@@ -1,0 +1,16 @@
+packages:
+    one folder, many files
+        - package declaration in every file
+        - package scope
+            something in one file is accessible to another
+        - imports have file scope
+    exported/unexported
+        - aka, visible/not visible
+        - generally dont say public/private
+        - Capitalization
+            capitalize: exported, visible outside package
+            lowercase: unexported, not visible outside the package
+
+go commands
+    go run:
+        ex. "go run main.go"

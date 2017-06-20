@@ -26,7 +26,7 @@ func main() {
 //   // So these are problems caused by adding float and int together? or 0001 + 01? "signedness"?
 
 //   Some code about signed and unsigned.. // vhat?
-//   // I google:  signed and unsigned int, unsigned cant be neg. signed CAN
+//   // I google:  'signed and unsigned int' => unsigned cant be neg. signed CAN
 //   // OK that makes sense, moving on
 
 

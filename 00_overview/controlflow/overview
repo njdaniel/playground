@@ -1,0 +1,25 @@
+Control Flow
+
+- Sequence
+- loop/iterative
+    - for loop
+        init, cond, post
+    - bool (while-ish)
+        infinite
+    - do-while-ish
+        break
+    - continue
+    - nested
+- conditionals
+    - switch/case/default statements
+        - no default fall-through
+        - creating fall-through
+        - multiple cases
+        - cases can be expressions
+            evaluate to true
+        - type
+    - if
+        - the not operator
+        - initialization statement
+        - if / else
+        - if / else if
