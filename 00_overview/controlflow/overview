@@ -23,3 +23,21 @@ Control Flow
         - initialization statement
         - if / else
         - if / else if
+
+Documentation
+    - golang spec
+    - effective go
+Terminology
+    - lexical elements
+    - literal values
+    - runes
+
+    rune
+        - character
+        - an interger value identifying a unicode code point
+        - alias for in32
+            - 4bytes to 32bits
+            - UTF-8 os a 4byte coding scheme
+            - with int 32 (4bytes) we have numbers for each of the code points
+
+        - printing UTF-8
