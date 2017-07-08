@@ -33,11 +33,27 @@ Terminology
     - runes
 
     rune
-        - character
+        - rune is a character ''
+        - string: "" ``
+        - under lexical element in golang docs
         - an interger value identifying a unicode code point
-        - alias for in32
+        - alias for int32
             - 4bytes to 32bits
             - UTF-8 os a 4byte coding scheme
             - with int 32 (4bytes) we have numbers for each of the code points
 
         - printing UTF-8
+        UTF-8: 4 byte coding scheme
+            text encoding
+    - Lexicon
+        -  dictionary
+        - made of up of lexical elements
+        - Tokens form the vocab of the go lang
+            Four Classes:
+                Identifiers
+                Keywords
+                    break, case, const, go, ...
+                Operators/Delimiters
+                    &, %,
+                Literals
+                    rune literal represents a rune constant, an integer IDing a Unicode code point
