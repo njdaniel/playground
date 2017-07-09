@@ -34,6 +34,9 @@ Terminology
 
     rune
         - rune is a character ''
+            ex.
+                foo := 'a'
+                fmt.Println(foo)    // prints 97
         - string: "" ``
         - under lexical element in golang docs
         - an interger value identifying a unicode code point
@@ -45,6 +48,7 @@ Terminology
         - printing UTF-8
         UTF-8: 4 byte coding scheme
             text encoding
+            backward compatible with ASCII, characters for Universial characters
     - Lexicon
         -  dictionary
         - made of up of lexical elements
@@ -57,3 +61,6 @@ Terminology
                     &, %,
                 Literals
                     rune literal represents a rune constant, an integer IDing a Unicode code point
+
+    - String:
+        - Collection of characters
