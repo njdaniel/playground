@@ -1,0 +1,34 @@
+
+Functions
+    uses "func"
+    ex.
+        func main(){}
+
+    Inside functions you can declare variables using the ":=" notation instead of "var variablename type"
+
+    params
+        multiple variadic params
+    args
+        multiple variadic args
+    // variadic means to have pretty much unlimited variables, which I dont think you can do very well with a functional
+    // curry
+
+    func expressions
+
+    closure
+
+    callbacks
+
+    recursion
+
+    defer
+
+    anonymous self-executing functions
+
+    pass by value
+        reference types
+
+    data structures
+        map
+        slices
+        structs

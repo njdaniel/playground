@@ -4,4 +4,10 @@ godocs
 
 Dave Cheney blog
 
+Documentation:
+    language spec
+        https://golang.org/ref/spec
+    effective go
+        https://golang.org/doc/effective_go.html
+
 
