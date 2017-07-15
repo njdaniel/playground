@@ -26,5 +26,10 @@ func SwitchOnType(x interface{})  {
 }
 
 func main() {
-
+	SwitchOnType(7)
+	SwitchOnType("Daniel")
+	var t = Contact{"Good to see you,", "Tim"}
+	SwitchOnType(t)
+	SwitchOnType(t.greeting)
+	SwitchOnType(t.name)
 }
