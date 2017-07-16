@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func wrapper() func() int  {
-	x := 0
+	var x int
+	//x := 0
 	return func() int {
 		x++
 		return x
