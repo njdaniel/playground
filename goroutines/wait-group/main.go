@@ -3,7 +3,6 @@ package main
 import (
 	"sync"
 	"fmt"
-	"time"
 )
 
 var wg sync.WaitGroup
