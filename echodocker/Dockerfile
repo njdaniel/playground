@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM ubuntu:16.04
 ADD echodocker /usr/bin/echodocker
-ENTRYPOINT ["echodocker"]
+#ENTRYPOINT ["echodocker"]
 EXPOSE 4000
