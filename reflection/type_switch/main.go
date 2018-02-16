@@ -1,6 +1,6 @@
 /*
 Take generic values(interfaces{}) and do something useful based on underlying type
- */
+*/
 package main
 
 import (

@@ -14,9 +14,9 @@ func main() {
 		close(c)
 	}()
 
-	for i := 0; i <n; i++ {
+	for i := 0; i < n; i++ {
 		go func() {
-			for n:= range c {
+			for n := range c {
 				fmt.Println(n)
 			}
 			done <- true

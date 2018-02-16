@@ -1,14 +1,14 @@
 package main
 
 import (
-	"runtime"
 	"fmt"
+	"runtime"
 	"sync"
 )
 
 var wg sync.WaitGroup
 
-func init()  {
+func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
@@ -19,14 +19,14 @@ func main() {
 	wg.Wait()
 }
 
-func foo()  {
+func foo() {
 	for i := 0; i < 45; i++ {
 		fmt.Println("Foo:", i)
 	}
 	wg.Done()
 }
 
-func bar()  {
+func bar() {
 	for i := 0; i < 45; i++ {
 		fmt.Println("Bar:", i)
 	}

@@ -7,13 +7,13 @@ func main() {
 	go bar()
 }
 
-func foo()  {
-	for i := 0; i <1000; i++ {
+func foo() {
+	for i := 0; i < 1000; i++ {
 		fmt.Println("Foo:", i)
 	}
 }
 
-func bar()  {
+func bar() {
 	for i := 0; i < 1000; i++ {
 		fmt.Println("Bar:", i)
 	}

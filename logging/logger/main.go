@@ -6,13 +6,13 @@ import (
 	"time"
 )
 
-var  (
+var (
 	Error *log.Logger
 	Debug *log.Logger
-	Info *log.Logger
+	Info  *log.Logger
 )
 
-func init()  {
+func init() {
 	f := log.LstdFlags | log.Lshortfile
 	Error = log.New(os.Stderr, "Error ", f)
 	Debug = log.New(os.Stdout, "Debug ", f)

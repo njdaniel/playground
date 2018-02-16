@@ -1,16 +1,16 @@
 package main
 
 import (
+	"fmt"
+	"math/rand"
 	"sync"
 	"time"
-	"math/rand"
-	"fmt"
 )
 
 var wg sync.WaitGroup
 var counter int
 
-func incrementor(s string)  {
+func incrementor(s string) {
 	for i := 0; i < 20; i++ {
 		x := counter
 		x++

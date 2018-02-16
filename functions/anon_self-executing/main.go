@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	func () {
+	func() {
 		fmt.Println("I'm executing")
-	} ()
+	}()
 }

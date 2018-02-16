@@ -10,4 +10,3 @@ func main() {
 	fmt.Println("a's memory address - ", &a)
 	fmt.Printf("%d \n", &a)
 }
-

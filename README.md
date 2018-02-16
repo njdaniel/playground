@@ -1,27 +1,35 @@
 Notes on Golang
 
-01 Tutorial:
+Install
 
-02 Program Structure:
+    Ubuntu:
+    $ snap install --classic go
 
-03 Basic Data Types
+Tutorial/Hello World
+    
 
-04 Composite Types
+Packages and the Go tool
 
-05 Functiosn
+Program Structure
 
-06 Methods
+Basic Data Types
 
-07 Interfaces
+Composite Types
 
-08 Goroutines and Channels
+Functions
 
-09 Concurrency with Shared Variables
+Methods
 
-10 Packages and the Go tool
+Interfaces
 
-11 Testing
+Goroutines and Channels
 
-12 Reflection
+Concurrency with Shared Variables
 
-13 Low-Level Programming
+Testing
+
+Reflection
+
+Low-Level Programming
+
+Logging

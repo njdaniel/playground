@@ -8,7 +8,7 @@ func main() {
 	fmt.Println(m["Todd"]) // 44
 }
 
-func changeMe(z map[string]int)  {
+func changeMe(z map[string]int) {
 	z["Todd"] = 44
 }
 
@@ -20,4 +20,4 @@ and it returns an initialized not (zeroed) value of type T (not *T).
 The reson for the distiiction is that these three types represent, under the covers, reference to data structures that must be initialized before use.
 Aslice, for example, is a three-item descriptor contains a pointer to the data (inside an array), the length, and the capacity, and until those items
 the slice is nil. For slices, maps, and channels, make initializes the internal data structure
- */
+*/

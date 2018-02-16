@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 //func increment() int  {
 //	x++
 //	return x
@@ -28,4 +27,4 @@ a function without a name
 
 func expression
 assigning a func to a variable
- */
+*/

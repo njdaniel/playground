@@ -6,7 +6,7 @@ import "fmt"
 // KB: KiloBytes 2^10
 // MB: MegaBytes 2^20
 const (
-	_ = iota // 0
+	_  = iota             // 0
 	KB = 1 << (iota * 10) // 1 << (1 * 10)
 	MB = 1 << (iota * 10) // 1 << (2 * 10)
 )

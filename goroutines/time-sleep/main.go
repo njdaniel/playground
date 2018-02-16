@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sync"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -15,15 +15,15 @@ func main() {
 	wg.Wait()
 }
 
-func foo()  {
+func foo() {
 	for i := 0; i < 45; i++ {
 		fmt.Println("Foo:", i)
-		time.Sleep(3* time.Millisecond)
+		time.Sleep(3 * time.Millisecond)
 	}
 	wg.Done()
 }
 
-func bar()  {
+func bar() {
 	for i := 0; i < 45; i++ {
 		for i := 0; i < 45; i++ {
 			fmt.Println("Bar:", i)
