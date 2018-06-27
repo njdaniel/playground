@@ -41,6 +41,24 @@
 Most example code taken from [A Tour of Go](http://tour.golang.org/), which is an excellent introduction to Go.
 If you're new to Go, do that tour. Seriously.
 
+https://github.com/a8m/go-lang-cheat-sheet
+
+## Resources
+Online:
+* https://golang.org/doc/effective_go.html
+* https://golang.org/ref/spec
+* https://gobyexample.com/
+
+Books:
+* The Go Programming Language by Alan Donovan, Brian Kernighan
+* Go in Action
+* Go in Practice
+
+Editors and IDEs:
+* Vscode
+* Vim via go-vim plugin
+* Goland
+
 ## Go in a Nutshell
 
 * Imperative language
