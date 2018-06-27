@@ -1,0 +1,4 @@
+# Persistent Config file
+enabled: true
+path: /Users/nicholasdaniel
+count: 3
