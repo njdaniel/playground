@@ -1,12 +1,12 @@
 package main
 
 import (
-	"net"
-	"log"
 	"bufio"
-	"time"
 	"fmt"
+	"log"
+	"net"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	}
 }
 
-func handleConn(c net.Conn)  {
+func handleConn(c net.Conn) {
 	input := bufio.NewScanner(c)
 	for input.Scan() {
 		echo(c, input.Text(), 1*time.Second)
@@ -32,7 +32,7 @@ func handleConn(c net.Conn)  {
 	c.Close()
 }
 
-func echo(c net.Conn, shout string, delay time.Duration)  {
+func echo(c net.Conn, shout string, delay time.Duration) {
 	fmt.Println(c, "\t", strings.ToUpper(shout))
 	time.Sleep(delay)
 	fmt.Fprintln(c, "\t", shout)
