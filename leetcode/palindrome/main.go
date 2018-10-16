@@ -6,11 +6,11 @@ import (
 )
 
 func main() {
-	x := -121
-	fmt.Println(isPalindrome(x))
+	x := 121
+	fmt.Println(IsPalindrome(x))
 }
 
-func isPalindrome(x int) bool {
+func IsPalindrome(x int) bool {
 	s := strconv.Itoa(x)
 	runes := []rune(s)
 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
