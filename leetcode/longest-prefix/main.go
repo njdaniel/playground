@@ -1,13 +1,15 @@
 package main
 
-import (
-	"strings"
-)
 
 func main() {
 	
 }
 
 func longestCommonPrefix(strs []string) string {
-	return strings.Join(strs,",")
+	prefix := make([]rune,0)
+	for i, j := range strs {
+		for m, n := range j {
+		}
+	}
+	return string(prefix)
 }
