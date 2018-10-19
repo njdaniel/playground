@@ -9,11 +9,18 @@ func main() {
 
 func longestCommonPrefix(strs []string) string {
 	prefix := make([]rune,0)
-	for i, j := range strs {
+	var s1 string
+	//for i, j := range strs {
+	//	if i == 0 {
+	//		s1 = j
+	//	}
+	//	if j[i] != j[i]-1 {
+	//
+	//	}
+	//}
+	 for i := 0; i < len(strs); i++ {
 
-		if j[i] != j[i]-1 {
+	 }
 
-		}
-	}
 	return string(prefix)
 }
