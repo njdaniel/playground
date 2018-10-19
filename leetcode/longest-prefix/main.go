@@ -3,13 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	input := []string{"flower", "flow", "flight"}
+	input := []string{"aac","cab","abb"}
 	fmt.Println(longestCommonPrefix(input))
 }
 
 func longestCommonPrefix(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+	if len(strs[0]) == 0 {
+		return ""
+	}
+	if len(strs) == 1 {
+		return strs[0]
+	}
 	prefix := make([]rune,0)
-
 	var min = func (x,y int) int {
 		if x < y {
 			return x
@@ -22,7 +30,10 @@ func longestCommonPrefix(strs []string) string {
 		for j := 0; j < min(len(v1),len(v2)); j++ {
 			if v1[j] == v2[j] {
 				prefix = append(prefix, v1[j])
+			} else {
+				break
 			}
+
 		}
 		v1 = prefix
 		prefix = nil
