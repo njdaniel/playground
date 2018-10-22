@@ -1,0 +1,38 @@
+package main
+
+func main() {
+	
+}
+
+func isValid(s string) bool {
+	stack := make([]rune,0)
+	rs := []rune(s)
+	for _, j := range rs {
+		switch j {
+		case '(', '{', '[':
+			stack = append(stack, j)
+		case ')':
+			if stack[len(stack)-1] == '(' {
+				stack = stack[:len(stack)]
+			} else {
+				return false
+			}
+		case '}':
+			if stack[len(stack)-1] == '{' {
+				stack = stack[:len(stack)]
+			} else {
+				return false
+			}
+		case ']':
+			if stack[len(stack)-1] == '[' {
+				stack = stack[:len(stack)]
+			} else {
+				return false
+			}
+		}
+	}
+	if len(stack) == 0 {
+		return true
+	}
+	return false
+}
