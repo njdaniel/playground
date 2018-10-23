@@ -10,25 +10,25 @@ func main() {
 func isValid(s string) bool {
 	stack := make([]rune,0)
 	rs := []rune(s)
-	for _, j := range rs {
+	for _, j := range rs  {
 		switch j {
 		case '(', '{', '[':
 			stack = append(stack, j)
 		case ')':
 			if stack[len(stack)-1] == '(' {
-				stack = stack[:len(stack)]
+				stack = stack[:len(stack)-1]
 			} else {
 				return false
 			}
 		case '}':
 			if stack[len(stack)-1] == '{' {
-				stack = stack[:len(stack)]
+				stack = stack[:len(stack)-1]
 			} else {
 				return false
 			}
 		case ']':
 			if stack[len(stack)-1] == '[' {
-				stack = stack[:len(stack)]
+				stack = stack[:len(stack)-1]
 			} else {
 				return false
 			}
