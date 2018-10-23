@@ -1,7 +1,10 @@
 package main
 
+import "fmt"
+
 func main() {
-	
+	input := "()"
+	fmt.Println(isValid(input))
 }
 
 func isValid(s string) bool {
