@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	input := "()"
+	input := "]"
 	fmt.Println(isValid(input))
 }
 
@@ -15,18 +15,27 @@ func isValid(s string) bool {
 		case '(', '{', '[':
 			stack = append(stack, j)
 		case ')':
+			if len(stack) == 0 {
+				return false
+			}
 			if stack[len(stack)-1] == '(' {
 				stack = stack[:len(stack)-1]
 			} else {
 				return false
 			}
 		case '}':
+			if len(stack) == 0 {
+				return false
+			}
 			if stack[len(stack)-1] == '{' {
 				stack = stack[:len(stack)-1]
 			} else {
 				return false
 			}
 		case ']':
+			if len(stack) == 0 {
+				return false
+			}
 			if stack[len(stack)-1] == '[' {
 				stack = stack[:len(stack)-1]
 			} else {
