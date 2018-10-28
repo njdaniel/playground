@@ -3,15 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	n := []int{1,1,2}
+	n := []int{0,0,1,1,1,2,2,3,3,4}
 	fmt.Println(removeDuplicates(n))
 }
 
 func removeDuplicates(nums []int) int {
-	limit := len(nums)-2
-	for i := 0; i < limit; i++ {
+	for i := 0; i < len(nums)-2; {
 		if nums[i] == nums[i+1] {
 			nums = append(nums[:i], nums[i+1:]...)
+		} else {
+			i++
 		}
 	}
 	return len(nums)
