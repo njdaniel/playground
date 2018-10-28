@@ -1,16 +1,68 @@
 package main
 
-func main() {
-	
-}
+import "fmt"
 
-
- //Definition for singly-linked list.
- type ListNode struct {
+//Definition for singly-linked list.
+type ListNode struct {
     Val int
     Next *ListNode
 }
 
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+func main() {
+    n12 := ListNode{
+        Val: 3,
+    }
+    n11 := ListNode{
+        Val: 1,
+        Next: &n12,
+    }
 
+    n22 := ListNode{
+        Val: 4,
+    }
+    n21 := ListNode{
+        Val: 2,
+        Next: &n22,
+    }
+    lst := mergeTwoLists(&n11, &n21)
+	for lst != nil {
+	    fmt.Println(lst.Val)
+    }
+}
+
+
+
+
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+    var head ListNode
+    var p *ListNode
+    p = &head
+    for l1 != nil || l2 != nil {
+        if l1.Val == l2.Val {
+            temp := l1.Next
+            temp2 := l2.Next
+            p.Next = l1
+            p = l1
+            p.Next = l2
+            p = l2
+            p.Next = nil
+            l1 = temp
+            l2 = temp2
+        }
+        if l1.Val > l2.Val {
+            temp := l2.Next
+            p.Next = l2
+            p = l2
+            p.Next = nil
+            l2 = temp
+        }
+        if l1.Val < l2.Val {
+            temp := l2.Next
+            p.Next = l2
+            p = l2
+            p.Next = nil
+            l2 = temp
+        }
+    }
+    return head.Next
 }
