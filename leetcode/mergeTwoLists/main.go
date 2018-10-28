@@ -63,5 +63,12 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
             l1 = temp
         }
     }
+    // append non nil list to p
+    if l1 == nil {
+        p.Next = l2
+    }
+    if l2 == nil {
+        p.Next = l1
+    }
     return head.Next
 }
