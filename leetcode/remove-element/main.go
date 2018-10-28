@@ -3,17 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	n := []int{1}
-	fmt.Println(removeElement(n, 1))
+	n := []int{3,2,2,3}
+	fmt.Println(removeElement(n, 3))
+	fmt.Println(n)
 }
 
 func removeElement(nums []int, val int) int {
-	if len(nums) == 0 {
-		return 0
+	for i := 0; i < len(nums); {
+		if nums[i] == val {
+			nums = append(nums[:i], nums[i+1:]...)
+		} else {
+			i++
+		}
 	}
-	if val > len(nums)-1 {
-		return len(nums)
-	}
-	nums = append(nums[:val], nums[val+1:]...)
 	return len(nums)
 }
