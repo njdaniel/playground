@@ -27,6 +27,7 @@ func main() {
     lst := mergeTwoLists(&n11, &n21)
 	for lst != nil {
 	    fmt.Println(lst.Val)
+	    lst = lst.Next
     }
 }
 
@@ -37,7 +38,7 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
     var head ListNode
     var p *ListNode
     p = &head
-    for l1 != nil || l2 != nil {
+    for l1 != nil && l2 != nil {
         if l1.Val == l2.Val {
             temp := l1.Next
             temp2 := l2.Next
@@ -48,20 +49,18 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
             p.Next = nil
             l1 = temp
             l2 = temp2
-        }
-        if l1.Val > l2.Val {
+        } else if l1.Val > l2.Val {
             temp := l2.Next
             p.Next = l2
             p = l2
             p.Next = nil
             l2 = temp
-        }
-        if l1.Val < l2.Val {
-            temp := l2.Next
-            p.Next = l2
-            p = l2
+        } else if l1.Val < l2.Val {
+            temp := l1.Next
+            p.Next = l1
+            p = l1
             p.Next = nil
-            l2 = temp
+            l1 = temp
         }
     }
     return head.Next
