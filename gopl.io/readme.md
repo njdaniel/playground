@@ -1,0 +1,1 @@
+Examples from The Go Programming Book by Alan Donovan and Brian Kernighan
