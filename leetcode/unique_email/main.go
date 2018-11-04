@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	input := []string{
 		"test.email+alex@leetcode.com",
@@ -8,7 +10,7 @@ func main() {
 	}
 
 
-	numUniqueEmails(input)
+	fmt.Println(numUniqueEmails(input))
 }
 
 func numUniqueEmails(emails []string) int {
@@ -48,5 +50,4 @@ func numUniqueEmails(emails []string) int {
 		}
 	}
 	return len(u)
-	//return len(u)
 }
