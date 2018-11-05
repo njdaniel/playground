@@ -6,7 +6,7 @@ func main() {
 	fmt.Println(greet("Nick", "Daniel"))
 }
 
-func greet(fname, lname string) (s string)  {
+func greet(fname, lname string) (s string) {
 	s = fmt.Sprint(fname, " ", lname)
 	return
 }

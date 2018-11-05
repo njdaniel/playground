@@ -9,7 +9,6 @@ func main() {
 		"testemail+david@lee.tcode.com",
 	}
 
-
 	fmt.Println(numUniqueEmails(input))
 }
 

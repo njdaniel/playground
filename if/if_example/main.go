@@ -7,7 +7,7 @@ func main() {
 	if true {
 		fmt.Println("This will run")
 	}
-	if !false{
+	if !false {
 		fmt.Println("This will also run")
 	}
 	if false {

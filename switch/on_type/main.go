@@ -8,11 +8,11 @@ import "fmt"
 
 type Contact struct {
 	greeting string
-	name string
+	name     string
 }
 
-func SwitchOnType(x interface{})  {
-	switch x.(type) {	// This is an assert; asserting "x is of this type"
+func SwitchOnType(x interface{}) {
+	switch x.(type) { // This is an assert; asserting "x is of this type"
 	case int:
 		fmt.Println("int")
 	case string:

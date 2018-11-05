@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 //
-func zero (x *int) {
+func zero(x *int) {
 	*x = 0
 }
 

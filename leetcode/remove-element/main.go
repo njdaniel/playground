@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	n := []int{3,2,2,3}
+	n := []int{3, 2, 2, 3}
 	fmt.Println(removeElement(n, 3))
 	fmt.Println(n)
 }

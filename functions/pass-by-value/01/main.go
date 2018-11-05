@@ -9,7 +9,7 @@ func main() {
 	fmt.Println(age)
 }
 
-func changeMe(z *int)  {
+func changeMe(z *int) {
 	fmt.Println(z)
 	fmt.Println(*z)
 	*z = 24

@@ -9,5 +9,5 @@ func main() {
 	fmt.Scan(&numOne)
 	fmt.Print("Please enter a small number: ")
 	fmt.Scan(&numTwo)
-	fmt.Println(numOne, "/", numTwo, "=", float32(numOne) / float32(numTwo))
+	fmt.Println(numOne, "/", numTwo, "=", float32(numOne)/float32(numTwo))
 }

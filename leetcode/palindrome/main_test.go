@@ -8,7 +8,7 @@ func TestPalindrome(t *testing.T) {
 	}
 }
 
-func TestNonPalindrome(t *testing.T)  {
+func TestNonPalindrome(t *testing.T) {
 	if IsPalindrome(-121) {
 		t.Error(`IsPalindrome(-121) = true`)
 	}

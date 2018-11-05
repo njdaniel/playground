@@ -18,4 +18,4 @@ func main() {
 /*
 no default fallthrough
 no break needed, break is automatic
- */
+*/

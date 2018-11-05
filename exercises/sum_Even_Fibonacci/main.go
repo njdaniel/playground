@@ -15,7 +15,7 @@ func SumEvenFibonacci(limit int) int {
 		fib2 = newFib
 		evenFib = append(evenFib, newFib)
 	}
-	for i := 0; i >= len(evenFib); i++{
+	for i := 0; i >= len(evenFib); i++ {
 		sum = evenFib[i]
 	}
 	return sum

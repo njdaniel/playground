@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 // Print: standard output
 // Println: standard output with newline
 // Printf: standard output according to format specifier

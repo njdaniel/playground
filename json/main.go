@@ -2,12 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"fmt"
+	"log"
 )
 
 type Account struct {
-	Server	string 	`json:"server"`
+	Server string `json:"server"`
 }
 
 // JSON types:

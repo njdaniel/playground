@@ -28,5 +28,3 @@ func main() {
 //   Some code about signed and unsigned.. // vhat?
 //   // I google:  'signed and unsigned int' => unsigned cant be neg. signed CAN
 //   // OK that makes sense, moving on
-
-

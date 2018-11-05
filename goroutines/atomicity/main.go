@@ -1,11 +1,11 @@
 package main
 
 import (
-	"sync"
-	"time"
-	"math/rand"
-	"sync/atomic"
 	"fmt"
+	"math/rand"
+	"sync"
+	"sync/atomic"
+	"time"
 )
 
 var wg sync.WaitGroup
@@ -14,7 +14,7 @@ var counter int64
 func main() {
 }
 
-func incrementor(s string)  {
+func incrementor(s string) {
 	for i := 0; i < 20; i++ {
 		time.Sleep(time.Duration(rand.Intn(3)) * time.Millisecond)
 		atomic.AddInt64(&counter, 1)

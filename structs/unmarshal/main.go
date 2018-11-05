@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
 type Person struct {
 	First string
-	Last string
-	Age int
+	Last  string
+	Age   int
 }
 
 func main() {

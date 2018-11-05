@@ -1,12 +1,12 @@
 package main
 
 func main() {
-	
+
 }
 
 //judgeCircle does the robot end up at the start
 func judgeCircle(moves string) bool {
-	//cmds: 
+	//cmds:
 	//  L: left
 	//  R: right
 	//  U: up

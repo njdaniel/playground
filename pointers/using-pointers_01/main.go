@@ -13,7 +13,7 @@ func main() {
 	var b *int = &a
 	fmt.Println(b)
 
-	*b = 42 // b says, "The value at this address is changed to 42
+	*b = 42        // b says, "The value at this address is changed to 42
 	fmt.Println(a) // 42
 
 	// can pass mem addresses instead of values

@@ -4,8 +4,8 @@ import "fmt"
 
 type Person struct {
 	first string
-	last string
-	age int
+	last  string
+	age   int
 }
 
 func (p Person) fullName() string {

@@ -8,4 +8,3 @@ func main() {
 
 // main is the main entry point of a program,
 // only one in the entire program
-

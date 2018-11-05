@@ -9,7 +9,7 @@ func main() {
 	fmt.Println(m) // [Todd]
 }
 
-func changeMe(z []string){
+func changeMe(z []string) {
 	z[0] = "Todd"
 	fmt.Println(z) // [Todd]
 }

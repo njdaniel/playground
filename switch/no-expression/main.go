@@ -18,4 +18,4 @@ func main() {
 /*
 No expression needed for switch just go by case by case
 only first one that match prints
- */
+*/

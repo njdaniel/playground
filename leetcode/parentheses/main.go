@@ -8,9 +8,9 @@ func main() {
 }
 
 func isValid(s string) bool {
-	stack := make([]rune,0)
+	stack := make([]rune, 0)
 	rs := []rune(s)
-	for _, j := range rs  {
+	for _, j := range rs {
 		switch j {
 		case '(', '{', '[':
 			stack = append(stack, j)

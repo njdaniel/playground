@@ -22,11 +22,11 @@ func romanToInt(s string) int {
 	for _, j := range runes {
 		sum += converts[string(j)]
 		switch {
-		case (j == 'V' || j== 'X') && last == 'I':
+		case (j == 'V' || j == 'X') && last == 'I':
 			sum -= 2
-		case (j == 'L' || j== 'C') && last == 'X':
+		case (j == 'L' || j == 'C') && last == 'X':
 			sum -= 20
-		case (j == 'D' || j== 'M') && last == 'C':
+		case (j == 'D' || j == 'M') && last == 'C':
 			sum -= 200
 		}
 		last = j
