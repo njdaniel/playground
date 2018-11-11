@@ -11,7 +11,7 @@ func main() {
 }
 
 func reverseWords(s string) string {
-	ra := []rune(s)
+	ra := ""
 	//split by words
 	words := strings.Fields(s)
 	fmt.Println(words[0])
@@ -20,10 +20,7 @@ func reverseWords(s string) string {
 		for _, l := range word {
 			rv = string(l) + rv
 		}
-
+		ra = ra +" " + rv
 	}
-
-	//reverse
-
-	return ""
+	return ra
 }
