@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	input := "Let's take LeetCode contest"
+	input := "jjjjjjjaefawf"
 	fmt.Println(reverseWords(input))
 }
 
@@ -14,7 +14,6 @@ func reverseWords(s string) string {
 	ra := ""
 	//split by words
 	words := strings.Fields(s)
-	fmt.Println(words[0])
 	for _, word := range words {
 		rv := ""
 		for _, l := range word {
