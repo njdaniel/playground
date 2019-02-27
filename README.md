@@ -50,6 +50,7 @@ Online:
 * https://gobyexample.com/
 * https://github.com/golang/go/wiki
 * https://go-search.org/
+* https://golang.org/pkg/#stdlib
 
 Books:
 * The Go Programming Language by Alan Donovan, Brian Kernighan
