@@ -7,7 +7,3 @@ func main() {
 	names := fmt.Sprintf(name + " Nick")
 	fmt.Printf("Hello World %s \n", names)
 }
-
-func (foo string)  {
-	
-}
