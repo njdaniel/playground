@@ -48,6 +48,9 @@ Online:
 * https://golang.org/doc/effective_go.html
 * https://golang.org/ref/spec
 * https://gobyexample.com/
+* https://github.com/golang/go/wiki
+* https://go-search.org/
+* https://golang.org/pkg/#stdlib
 
 Books:
 * The Go Programming Language by Alan Donovan, Brian Kernighan
