@@ -2,10 +2,11 @@
 package main
 
 import (
-	"github.com/prometheus/common/log"
 	"io"
 	"net"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
