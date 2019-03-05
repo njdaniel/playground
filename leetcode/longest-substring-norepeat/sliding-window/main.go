@@ -23,7 +23,7 @@ func lengthOfLongestSubstring(s string) int {
 			}
 			j++
 		} else {
-			delete(m, rune(s[j]))
+			delete(m, rune(s[i]))
 			i++
 		}
 	}
