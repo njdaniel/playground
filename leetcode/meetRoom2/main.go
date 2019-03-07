@@ -73,7 +73,6 @@ func minMeetingRooms(intervals []Interval) int {
 			rooms = append(rooms, room)
 		}
 		min = len(rooms)
-
 	}
 	return min
 }
