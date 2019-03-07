@@ -61,9 +61,9 @@ func minMeetingRooms(intervals []Interval) int {
 						addRoom = false
 						break
 					}
-					if !addRoom {
-						break
-					}
+				}
+				if !addRoom {
+					break
 				}
 			}
 		}
