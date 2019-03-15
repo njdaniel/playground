@@ -19,13 +19,13 @@ func subdomainVisits(cpdomains []string) []string {
 		// split the slice from domain and int
 		sp := strings.Fields(v)
 		// check if in map if not add otherwise update the int
-		if _, ok := subdomains[sp[1]]; !ok {
-			visits, _ := strconv.Atoi(sp[0])
-			subdomains[sp[1]] = visits
-		} else {
-			visits, _ := strconv.Atoi(sp[0])
-			subdomains[sp[1]] = subdomains[sp[1]] + visits
-		}
+		// if _, ok := subdomains[sp[1]]; !ok {
+		// 	visits, _ := strconv.Atoi(sp[0])
+		// 	subdomains[sp[1]] = visits
+		// } else {
+		// 	visits, _ := strconv.Atoi(sp[0])
+		// 	subdomains[sp[1]] = subdomains[sp[1]] + visits
+		// }
 		// get num of .'s
 		num := 0
 		for j := 0; j < len(sp[1]); j++ {
@@ -33,21 +33,18 @@ func subdomainVisits(cpdomains []string) []string {
 				num++
 			}
 		}
+		sepDomains := strings.Split(sp[1], ".")
 		// loop thro for each subdomain
-		for i := 0; i < num; i++ {
-			if _, ok := subdomains[sp[1]]; !ok {
-				visits, _ := strconv.Atoi(sp[0])
-				subdomains[sp[1]] = visits
-			} else {
-				visits, _ := strconv.Atoi(sp[0])
-				subdomains[sp[1]] = subdomains[sp[1]] + visits
-			}
+		for i := num; i >= 0; i-- {
+			curDomain := strings.Join(sepDomains[i:], ".")
+			visits, _ := strconv.Atoi(sp[0])
+			subdomains[curDomain] += visits
 		}
 
 	}
 	ss := make([]string, 0)
 	for k, v := range subdomains {
-		s := fmt.Sprintln(strconv.Itoa(v) + " " + k)
+		s := fmt.Sprintf("%v %v", strconv.Itoa(v), k)
 		ss = append(ss, s)
 	}
 	return ss
