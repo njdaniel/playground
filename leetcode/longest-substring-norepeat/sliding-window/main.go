@@ -9,6 +9,7 @@ func main() {
 	fmt.Println(lengthOfLongestSubstring(nput))
 }
 
+// lengthOfLongestSubstring finds the longest substring with no repeat char
 func lengthOfLongestSubstring(s string) int {
 	//first attempt was with brute force
 	//it was slow and a little messy to
