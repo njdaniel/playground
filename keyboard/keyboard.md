@@ -24,6 +24,7 @@ https://configure.ergodox-ez.com/layouts/bEnp/latest/0
 https://configure.ergodox-ez.com/layouts/x4PW/latest/0
 https://configure.ergodox-ez.com/layouts/Xyx9/latest/0
 https://configure.ergodox-ez.com/layouts/bEqP/latest/0
+https://configure.ergodox-ez.com/layouts/aooD/latest/0
 '"
 This is a test to see how fast i can to see how fast i can type, but i think that maybe that the browns would have better but this is a high response to the keys. Delete on the left side does make ergonomic sense. 
 Calm my poor brain from all its woes. Yes, calm your mind. The touch is a little to sensitive for me. You guessed that I think that I would not be able to adapt but you were wrong and I think that I can make this work.
