@@ -414,6 +414,75 @@ for range time.Tick(time.Second) {
 
 ```
 
+### Slice Tricks
+
+ref: [https://github.com/golang/go/wiki/SliceTricks]
+
+#### AppendVector
+```go
+a = append(a, b...)
+```
+
+#### Copy
+```go
+b = make([]T, len(a))
+copy(b, a)
+```
+
+#### Cut
+```go
+a = append(a[:i], a[j:]...)
+```
+
+#### Delete
+```go
+a = append(a[:i], a[i+1:]...)
+```
+
+NOTE if element is of type pointer or a struct that contains a pointer, which needs to be garbaged collected. The above implentmentations of cut and delete have a potential memory leak: some elements with values are still referenced by slice a and cannot be collected. To fix:
+
+#### Cut
+```go
+copy(a[i:], a[j:])
+for k, n := len(a)-j+1, len(a); k < n; k++ {
+    a[k] = nil // or the zero value of T
+}
+a = a[:len(a)-j+1]
+```
+
+#### Delete
+```go
+copy(a[i:], a[i+1:])
+a[len(a)-1] = nil
+a = a[:len(a)-1]
+```
+
+#### Expand
+
+```go
+a = append(a[:i], append(make([]T, j), a[i:]...)...)
+```
+
+#### Extend
+```go
+a = append(a, make([]T, j)...)
+```
+
+#### Insert
+```go
+a = append(a[:i], append([]T{x}, a[i:]...)...)
+```
+
+#### Push
+```go
+a = append(a, x)
+```
+
+#### Pop
+```go
+x, a = a[len(a)-1], a[:len(a)-1]
+```
+
 ## Maps
 
 ```go
