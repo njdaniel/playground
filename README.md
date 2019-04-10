@@ -458,7 +458,6 @@ a = a[:len(a)-1]
 ```
 
 #### Expand
-
 ```go
 a = append(a[:i], append(make([]T, j), a[i:]...)...)
 ```
