@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("bash", "-c", "docker run ubuntu bash -c 'while sleep 1; do echo 1; done'")
+	cmd := exec.Command("bash", "-c", "git clone https://github.com/njdaniel/test.git ~/tmp/test")
 	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 	cmd.Start()
 	cmd.Wait()
 	// if err != nil {
