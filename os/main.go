@@ -1,14 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"os"
 	"os/exec"
 )
 
 func main() {
-	out, err := exec.Command("bash", "-c", "ls -lah").CombinedOutput()
-	if err != nil {
-		fmt.Printf("could not execute: %v", err)
-	}
-	fmt.Println(string(out[:]))
+	cmd := exec.Command("bash", "-c", "docker run ubuntu bash -c 'while sleep 1; do echo 1; done'")
+	cmd.Stdout = os.Stdout
+	cmd.Start()
+	cmd.Wait()
+	// if err != nil {
+	// 	fmt.Printf("could not execute: %v", err)
+	// }
+	// fmt.Println(string(out[:]))
 }
