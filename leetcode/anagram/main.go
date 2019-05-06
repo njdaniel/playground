@@ -5,8 +5,8 @@ import (
 )
 
 func main() {
-	A := []int{12, 28, 46, 32, 50}
-	B := []int{50, 12, 32, 46, 28}
+	A := []int{12, 12, 46, 32, 50}
+	B := []int{50, 12, 32, 46, 12}
 	fmt.Println(anagramMappings(A, B))
 }
 
@@ -20,10 +20,14 @@ func anagramMappings(A []int, B []int) []int {
 	for i := 0; i < len(A); i++ {
 		if _, ok := ha[A[i]]; !ok {
 			ha[A[i]] = []int{i}
+		} else {
+			ha[A[i]] = append(ha[A[i]], i)
 		}
 
 		if _, ok := hb[B[i]]; !ok {
 			hb[B[i]] = []int{i}
+		} else {
+			hb[B[i]] = append(hb[B[i]], i)
 		}
 
 		if _, ok := ha[B[i]]; ok {
