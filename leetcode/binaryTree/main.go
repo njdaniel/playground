@@ -1,14 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	l1 := &TreeNode{1, nil, nil}
-	root := TreeNode{5, l1, nil}
-	c := countUnivalSubtrees(&root)
-	fmt.Println(c)
+	// l1 := &TreeNode{1, nil, nil}
+	// root := TreeNode{5, l1, nil}
+	// c := countUnivalSubtrees(&root)
+	// fmt.Println(c)
 }
 
 // TreeNode is the defination of a binary tree node.
@@ -66,4 +62,9 @@ func isU(n *TreeNode) int {
 		return false
 	}
 	return count
+}
+
+// Deserialize func changes a bfs slice to a linked list
+func Deserialize() *TreeNode {
+	return &TreeNode{1, nil, nil}
 }
