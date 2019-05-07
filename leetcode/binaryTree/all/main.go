@@ -39,9 +39,6 @@ func dfs(n *TreeNode) []int {
 }
 
 func sameVal(vals []int) bool {
-	// if vals[0] == nil {
-	// 	vals = vals[1:]
-	// }
 	val := vals[0]
 	for _, x := range vals {
 		if val != x {

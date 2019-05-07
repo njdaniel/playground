@@ -37,3 +37,33 @@ func isUni(n *TreeNode, count int) (bool, int) {
 	}
 	return false, count
 }
+
+func isU(n *TreeNode) int {
+	count := 0
+	var f func(n *TreeNode) bool
+	f = func(n *TreeNode) bool {
+		if n.Left == nil && n.Right == nil {
+			count++
+			return true
+		}
+		l := false
+		r := false
+		if n.Left == nil {
+			l = true
+		} else {
+			l = f(n.Left)
+		}
+		if n.Right == nil {
+			r = true
+		} else {
+			r = f(n.Right)
+		}
+
+		if l == true && r == true {
+			count++
+			return true
+		}
+		return false
+	}
+	return count
+}
