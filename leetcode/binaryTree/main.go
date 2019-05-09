@@ -1,10 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	l1 := &TreeNode{5, nil, nil}
-	root := TreeNode{5, l1, nil}
+	r3 := &TreeNode{5, nil, nil}
+	r1 := &TreeNode{5, nil, r3}
+	r2 := &TreeNode{5, nil, nil}
+	l2 := &TreeNode{5, nil, nil}
+	l1 := &TreeNode{1, l2, r2}
+	root := TreeNode{5, l1, r1}
 	c := countUnivalSubtrees(&root)
 	fmt.Println(c)
 }
@@ -17,6 +23,9 @@ type TreeNode struct {
 }
 
 func countUnivalSubtrees(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
 	count := 0
 	var f func(n *TreeNode) bool
 	f = func(n *TreeNode) bool {
@@ -30,11 +39,21 @@ func countUnivalSubtrees(root *TreeNode) int {
 			l = true
 		} else {
 			l = f(n.Left)
+			if l && n.Val == n.Left.Val {
+				l = true
+			} else {
+				l = false
+			}
 		}
 		if n.Right == nil {
 			r = true
 		} else {
 			r = f(n.Right)
+			if r && n.Val == n.Right.Val {
+				r = true
+			} else {
+				r = false
+			}
 		}
 
 		if l == true && r == true {
@@ -91,8 +110,4 @@ func isU(n *TreeNode) int {
 	return count
 }
 
-// Deserialize func changes a bfs slice to a linked list
-func Deserialize(s string) *TreeNode {
 
-	return &TreeNode{1, nil, nil}
-}
