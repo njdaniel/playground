@@ -13,7 +13,7 @@ type TreeNode struct {
 }
 
 func main() {
-	s := "[1, 2, 3]"
+	s := "[1, 2, 3, null, null, 4, 5]"
 	node := Deserialize(s)
 	fmt.Println(node)
 	fmt.Println(*node.Left)
