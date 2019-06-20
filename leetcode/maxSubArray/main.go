@@ -1,6 +1,10 @@
 package main
 
+import "fmt"
+
 func main() {
+	input := []int{-2,1,-3,4,-1,2,1,-5,4}
+	fmt.Println(maxSubArray(input))
 	
 }
 
@@ -10,22 +14,41 @@ func maxSubArray(nums []int) int {
 	//f = &nums[0]
 	//e = &nums[0]
 	for x := 0; x < len(nums); x++ {
-		if f == nil {
+		if f == nil && e == nil {
 			f = &nums[x]
-		}
-		if e == nil {
 			e = &nums[x]
+			fmt.Println("init")
+			continue
+		}
+
+		fmt.Printf("front pointer %d\n", *f)
+		//should front move up?
+		vf := 0
+		for y := *f; y <= x; y++ {
+			vf += nums[y]
+		}
+		if vf > 0 {
+			f = &nums[x]
 		}
 
 		//should end move up?
-
-		//should front move up?
-		v := 0
-		for y := *f; y <= x; y++ {
-			v += nums[y]
+		ve := 0
+		for y := *e; y <= x || y <= *f; y++ {
+			ve += nums[y]
 		}
-		if v > 0 {
-			f = &nums[x]
+		if ve < 0 {
+			e = &nums[x]
 		}
+		sum := 0
+		for y := *e; y <= *f; y++ {
+			sum += nums[y]
+		}
+		fmt.Println(sum)
 	}
+
+	sum := 0
+	for y := *e; y <= *f; y++ {
+		sum += nums[y]
+	}
+	return sum
 }
