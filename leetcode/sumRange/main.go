@@ -30,29 +30,6 @@ func summaryRanges(nums []int) []string {
 			c = c[:0]
 			c = append(c, nums[i])
 		}
-
-		//if !(len(c) > 0) {
-		//	c = append(c, i)
-		//	continue
-		//}
-		//if i == c[len(c)-1] +1 {
-		//	c = append(c, i)
-		//	continue
-		//} else {
-		//	// create range string
-		//	s := intToStringRange(c)
-		//	sr = append(sr, s)
-		//	// clear c
-		//	c = c[:0]
-		//}
-		//switch {
-		//case i == 0: c = append(c, nums[0])
-		//case i == c[len(c)-1]+1: c = append(c, nums[i])
-		//default:
-		//	s := intToStringRange(c)
-		//	sr = append(sr, s)
-		//	c = c[:0]
-		//}
 	}
 	if len(c) != 0 {
 		s := intToStringRange(c)
