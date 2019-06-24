@@ -1,12 +1,26 @@
 package main
 
+import "fmt"
+
 type ListNode struct {
 	Val int
 	Next *ListNode
 }
 
 func main() {
-	
+	l6 := &ListNode{6, nil}
+	l5 := &ListNode{5, l6}
+	l4 := &ListNode{4, l5}
+	l3 := &ListNode{3, l4}
+	l2 := &ListNode{2, l3}
+	l := &ListNode{1, l2}
+	nl := oddEvenList(l)
+	//fmt.Printf("%d->%d->%d", nl, nl.Next, nl.Next.Next)
+	p := nl
+	for p != nil {
+		fmt.Println(p)
+		p = p.Next
+	}
 }
 
 /**
