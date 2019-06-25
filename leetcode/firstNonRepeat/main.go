@@ -13,9 +13,6 @@ func main() {
 func firstUniqChar(s string) int {
 	m := make(map[rune][]int, 0)
 	u := -1
-	//ss := make([]int, 0)
-	// loop string and add to m and ss
-	//when adding check if exist, remove non-unique from ss
 	for i, r := range s {
 		if _, ok := m[r]; !ok {
 			m[r] = []int{i,}
@@ -29,6 +26,5 @@ func firstUniqChar(s string) int {
 			u = v[0]
 		}
 	}
-
 	return u
 }
