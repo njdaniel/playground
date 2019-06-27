@@ -13,6 +13,7 @@ func Test_wordPattern(t *testing.T) {
 		want bool
 	}{
 		{"ex1", args{"abab", "cat dog cat dog"}, true},
+		{"ex2", args{"abab", "dog dog dog dog"}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
