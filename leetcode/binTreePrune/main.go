@@ -14,18 +14,18 @@ func main() {
 }
 
 func pruneTree(root *TreeNode) *TreeNode {
-
+	return root
 }
 
 func serialize(n *TreeNode) []interface{} {
 	s := make([]interface{}, 0)
 	var f func(n *TreeNode)
 	f = func(n *TreeNode) {
-		switch reflect.ValueOf(n) {
-		case :
+		if reflect.ValueOf(n.Val).IsNil() {
+		 s = append(s, nil)
 			
 		}
 	}
-	
+	f(n)
 	return s
 }
