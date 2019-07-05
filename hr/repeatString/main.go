@@ -1,7 +1,9 @@
 package main
 
+import "fmt"
+
 func main() {
-	
+	fmt.Println(2%4)
 }
 
 func repeatedString(s string, n int64) int64 {
