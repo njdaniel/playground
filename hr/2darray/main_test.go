@@ -11,7 +11,14 @@ func Test_hourglassSum(t *testing.T) {
 		args args
 		want int32
 	}{
-		// TODO: Add test cases.
+		{name: "case0", args: args{[][]int32{
+			{-9, -9, -9, 1, 1, 1},
+			{0, -9, 0, 4, 4, 2},
+			{-9, -9, -9, 1, 2, 3},
+			{0, 0, 8, 6, 6, 0},
+			{0, 0, 0, -2, 0, 0},
+			{0, 0, 1, 2, 4, 0},
+			{}}}, want: int32(28),},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
