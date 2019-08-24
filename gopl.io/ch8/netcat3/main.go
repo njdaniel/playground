@@ -21,6 +21,7 @@ func main() {
 	mustCopy(conn, os.Stdin)
 	conn.Close()
 	<-done // wait for background goroutine to finish
+	log.Println("done")
 }
 
 func mustCopy(dst io.Writer, src io.Reader)  {

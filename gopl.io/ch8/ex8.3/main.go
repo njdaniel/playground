@@ -1,6 +1,7 @@
 package main
 
-import ("io"
+import (
+	"io"
 	"log"
 	"net"
 	"os"
@@ -8,7 +9,11 @@ import ("io"
 
 // modify netcat3 to just close the tcp write connection and not the read connection
 func main() {
-	conn, err := net.Dial("tcp", "localhost:8000")
+	addr, err := net.ResolveTCPAddr("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
+	conn, err := net.DialTCP("tcp", nil, addr)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,8 +24,8 @@ func main() {
 		done <- struct{}{} // signal to main goroutine
 	}()
 	mustCopy(conn, os.Stdin)
-	conn.Close()
-	<-done // wait fo
+	conn.CloseWrite()
+	<-done // wait for background goroutine to finish
 }
 func mustCopy(dst io.Writer, src io.Reader)  {
 	if _, err := io.Copy(dst, src); err != nil {
