@@ -3,6 +3,8 @@ package thumbnail
 import (
 	"gopl.io/ch8/thumbnail"
 	"log"
+	"os"
+	"sync"
 )
 
 // ImageFile reads an image form infile and
@@ -94,7 +96,33 @@ func makeThumbnails5(filenames []string) (thumbfiles []string, err error) {
 	return thumbfiles, nil
 }
 
-func makeThumbnail6()  {
-	
+//take channel of strings and return the number of bytes
+func makeThumbnail6(filenames <-chan string) int64 {
+	sizes := make(chan int64)
+	var wg sync.WaitGroup //# of working goroutines
+	for f := range filenames {
+		wg.Add(1)
+		//worker
+		go func(f string) {
+			defer wg.Done()
+			thumb, err := thumbnail.ImageFile(f)
+			if err != nil {
+				log.Println(err)
+				return
+			}
+			info, _ := os.Stat(thumb) //ignoring err
+			sizes <- info.Size()
+		}(f)
+	}
+	//closer
+	go func() {
+		wg.Wait()
+		close(sizes)
+	}()
+	var total int64
+	for size := range sizes {
+		total += size
+	}
+	return total
 }
 
