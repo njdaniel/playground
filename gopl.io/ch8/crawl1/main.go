@@ -35,3 +35,19 @@ func crawl(url string) []string {
 	}
 	return list
 }
+
+/*
+//!+output
+$ go build
+$ ./crawl1 http://gopl.io/
+http://gopl.io/
+https://golang.org/help/
+https://golang.org/doc/
+https://golang.org/blog/
+...
+2015/07/15 18:22:12 Get ...: dial tcp: lookup blog.golang.org: no such host
+2015/07/15 18:22:12 Get ...: dial tcp 23.21.222.120:443: socket:
+                                                        16CPUs pegged at 100%
+...
+//!-output
+*/

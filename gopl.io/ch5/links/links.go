@@ -7,6 +7,7 @@ import (
 	"golang.org/x/net/html"
 )
 
+// Extract makes HTTP GET request to url
 func Extract(url string) ([]string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
