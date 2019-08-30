@@ -43,6 +43,10 @@ func makeThumbnails3(filenames []string)  {
 }
 
 //need to return err
+// this causes a goroutine leak if the err is not the last filename
+// two fixes
+// 1) make a buffer that is big enough to allow all to finish
+// 2) create goroutine to drain the channel while the goroutine returns the err w/o delay
 func makeThumbnails4(filenames []string) error {
 	errors := make(chan error)
 
@@ -60,3 +64,37 @@ func makeThumbnails4(filenames []string) error {
 	}
 	return nil
 }
+
+//use buffer channel to return thumbfile with errors
+//returns generated file names in arbitrary order
+//or an error if any step fails
+func makeThumbnails5(filenames []string) (thumbfiles []string, err error) {
+	type item struct {
+		thumbfile string
+		err error
+	}
+	
+	ch := make(chan item, len(filenames))
+	for _, f := range filenames {
+		go func(f string) {
+			var it item
+			it.thumbfile, it.err = thumbnail.ImageFile(f)
+			ch <- it
+		}(f)
+	}
+	
+	for range filenames {
+		it := <-ch
+		if it.err != nil {
+			return nil, it.err
+		}
+		thumbfiles = append(thumbfiles, it.thumbfile)
+	}
+	
+	return thumbfiles, nil
+}
+
+func makeThumbnail6()  {
+	
+}
+
