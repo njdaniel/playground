@@ -25,6 +25,18 @@ func main() {
 			}
 		}()
 	}
+
+	//de-dupe worklist
+	//send unseen to crawler
+	seen := make(map[string]bool)
+	for list := range worklist {
+		for _, link := range list {
+			if !seen[link] {
+				seen[link] = true
+				unseenLinks <- link
+			}
+		}
+	}
 }
 
 var tokens = make(chan struct{}, 20)
