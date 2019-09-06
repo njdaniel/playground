@@ -33,6 +33,7 @@ func TestBank(t *testing.T) {
 	}
 }
 
+//need to run TestBank before to setup
 func TestWithdrawal(t *testing.T) {
 	b1 := Balance()
 	ok := Withdraw(50)
