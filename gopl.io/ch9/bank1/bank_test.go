@@ -1,67 +1,58 @@
 package bank
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func TestBalance(t *testing.T) {
-	tests := []struct {
-		name string
-		want int
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := Balance(); got != tt.want {
-				t.Errorf("Balance() = %v, want %v", got, tt.want)
-			}
-		})
+func TestBank(t *testing.T) {
+	done := make(chan struct{})
+
+	// Alice
+	go func() {
+		Deposit(200)
+		Withdraw(200)
+		fmt.Println("=", Balance())
+		done <- struct{}{}
+	}()
+
+	// Bob
+	go func() {
+		Deposit(50)
+		Withdraw(50)
+		Deposit(100)
+		done <- struct{}{}
+	}()
+
+	// Wait for both transactions.
+	<-done
+	<-done
+
+	if got, want := Balance(), 100; got != want {
+		t.Errorf("Balance = %d, want %d", got, want)
 	}
 }
 
-func TestDeposit(t *testing.T) {
-	type args struct {
-		amount int
+func TestWithdrawal(t *testing.T) {
+	b1 := Balance()
+	ok := Withdraw(50)
+	if !ok {
+		t.Errorf("ok = false, want true. balance = %d", Balance())
 	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-		})
+	expected := b1 - 50
+	if b2 := Balance(); b2 != expected {
+		t.Errorf("balance = %d, want %d", b2, expected)
 	}
 }
 
-func TestWithdraw(t *testing.T) {
-	type args struct {
-		amount int
+func TestWithdrawalFailsIfInsufficientFunds(t *testing.T) {
+	b1 := Balance()
+	ok := Withdraw(b1 + 1)
+	b2 := Balance()
+	if ok {
+		t.Errorf("ok = true, want false. balance = %d", b2)
 	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := Withdraw(tt.args.amount); got != tt.want {
-				t.Errorf("Withdraw() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_teller(t *testing.T) {
-	tests := []struct {
-		name string
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-		})
+	if b2 != b1 {
+		t.Errorf("balance = %d, want %d", b2, b1)
 	}
 }
