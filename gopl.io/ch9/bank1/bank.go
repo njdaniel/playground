@@ -14,6 +14,7 @@ func Balance() int {
 	return <-balances
 }
 
+// TODO: need to change bool to chan
 func Withdraw(amount int) bool {
 	x := <-balances
 	if x >= amount {
