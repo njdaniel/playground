@@ -2,8 +2,6 @@
 // This confines the shared variable to one goroutine and brokers the access with channel requests
 package bank
 
-import "golang.org/x/text/currency"
-
 var deposits = make(chan int)  //send amount to deposit
 var balances = make(chan int)  //receive balance
 var withdraws = make(chan int) //send amount to withdraw
