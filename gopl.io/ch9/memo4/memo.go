@@ -19,7 +19,7 @@ type result struct {
 }
 
 func New(f Func) *Memo {
-	return &Memo{f: f, cache: make(map[string]result)}
+	return &Memo{f: f, cache: make(map[string]*entry)}
 }
 
 type Memo struct {
