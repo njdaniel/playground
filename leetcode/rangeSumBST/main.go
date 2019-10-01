@@ -12,6 +12,13 @@ func main() {
  *     Right *TreeNode
  * }
  */
+
+type TreeNode struct {
+	Val int
+	Left *TreeNode
+	Right *TreeNode
+}
+
 func rangeSumBST(root *TreeNode, L int, R int) int {
 
 }
