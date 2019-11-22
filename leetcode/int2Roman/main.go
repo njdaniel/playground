@@ -8,7 +8,7 @@ func main() {
 }
 
 func intToRoman(num int) string {
-	m := make(map[int]rune{
+	m := map[int]rune{
 		1: 'I',
 		5: 'V', 
 		10: 'X', 
@@ -16,7 +16,7 @@ func intToRoman(num int) string {
 		100: 'C',
 		500: 'D',
 		1000: 'M',
-	})
+	}
 
 	r := make([]rune, 0)
 	n := num
@@ -73,6 +73,7 @@ func intToRoman(num int) string {
 			n = n-1
 			r = append(r, m[1] )
 		} 
- 	}	
+	}	
+	fmt.Printf("ro: %s", string(ro))
 	return string(ro)
 }
