@@ -1,7 +1,13 @@
 package main
 
+import "fmt"
+
 func main() {
-	
+	input := make([][]int, 0)
+	input = [][]int{
+		[]int{1,1,0,0,},[]int{1,0,0,1,},[]int{0,1,1,1,},[]int{1,0,1,0,},
+	}
+	fmt.Println(flipAndInvertImage(input))
 }
 
 
@@ -14,11 +20,10 @@ func flipAndInvertImage(A [][]int) [][]int {
 			arr[len(arr)-1-i] = tmp
 		}
 		for _, i := range arr {
-			switch arr[i] {
-			case 0:
-				arr[i] = 1
-			case 1:
-				arr[i] = 0
+			if i == 0 {
+				i = 1
+			} else if i == 1 {
+				i = 0
 			}
 		}
 	 }
