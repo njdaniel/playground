@@ -19,13 +19,24 @@ func flipAndInvertImage(A [][]int) [][]int {
 			arr[i] = arr[len(arr)-1-i]
 			arr[len(arr)-1-i] = tmp
 		}
-		for _, i := range arr {
-			if i == 0 {
-				i = 1
-			} else if i == 1 {
-				i = 0
+		for i, v := range arr {
+			if v == 0 {
+				arr[i] = 1
+			} else if v == 1 {
+				arr[i] = 0
 			}
 		}
 	 }
 	 return A
+}
+
+func invert(image []int) []int {
+	for _, i := range image {
+		if i == 0 {
+			i = 1
+		} else if i == 1 {
+			i = 0
+		}
+	}
+	return image
 }
