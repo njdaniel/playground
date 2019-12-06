@@ -43,3 +43,13 @@ func hammingWeightOpt(num uint32) int {
 	}
 	return f()
 }
+
+
+func hammingWeightBit(num uint32) int {
+	var sum uint32
+	for num > 0 {
+		sum += num & 1
+		num = num >> 1
+	}
+	return int(sum)
+}
