@@ -12,6 +12,7 @@ func Test_hammingWeight(t *testing.T) {
 		want int
 	}{
 		{name: "example1", args:args{num:uint32(00000000000000000000000000001011)}, want: 3},
+		{name: "example1", args:args{num:uint32(00000000000000000000000010000000)}, want: 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
