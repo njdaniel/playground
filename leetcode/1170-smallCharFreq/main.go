@@ -42,3 +42,45 @@ func numSmallerByFrequency(queries []string, words []string) []int {
 	// for each query and word need to find the smallest char
 	return ss
 }
+
+// words only need to be called once O(Q+W) not O(QW)
+func numSmallerByFrequencyOpt(queries []string, words []string) []int {
+	// call fsf func for each and put into a []int
+	ss := make([]int, 0)
+	var fsf = func(wq string) int {
+		var sc rune
+		f := 0
+		for i, v := range wq {
+			if i == 0 {
+				sc = v
+				f = 1
+			} else if v < sc {
+				sc = v
+				f = 1
+			} else if v == sc {
+				f++
+			}
+		}
+		return f
+	}
+	ws := make([]int, 0)
+	for _, word := range words {
+		ws = append(ws, fsf(word))
+	}
+	
+	for _, query := range queries {
+		qf := fsf(query)
+		// do binary search
+	}
+	
+
+	// search with binary search
+	
+	
+	return ss
+}
+
+func binarySearch()  {
+	
+}
+
