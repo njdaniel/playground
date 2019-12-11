@@ -29,4 +29,28 @@ func Test_numSmallerByFrequency(t *testing.T) {
 	}
 }
 
-
+func Test_binarySearch(t *testing.T) {
+	type args struct {
+		a      []int
+		search int
+	}
+	tests := []struct {
+		name            string
+		args            args
+		wantResult      int
+		wantSearchCount int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotResult, gotSearchCount := binarySearch(tt.args.a, tt.args.search)
+			if gotResult != tt.wantResult {
+				t.Errorf("binarySearch() gotResult = %v, want %v", gotResult, tt.wantResult)
+			}
+			if gotSearchCount != tt.wantSearchCount {
+				t.Errorf("binarySearch() gotSearchCount = %v, want %v", gotSearchCount, tt.wantSearchCount)
+			}
+		})
+	}
+}
