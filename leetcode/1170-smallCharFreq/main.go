@@ -80,7 +80,20 @@ func numSmallerByFrequencyOpt(queries []string, words []string) []int {
 	return ss
 }
 
-func binarySearch()  {
-	
+func binarySearch(a []int, search int) (result int, searchCount int) {
+	mid := len(a) / 2
+	switch {
+	case len(a) == 0:
+		result = -1 // not found
+	case a[mid] > search:
+		result, searchCount = binarySearch(a[:mid], search)
+	case a[mid] < search:
+		result, searchCount = binarySearch(a[mid+1:], search)
+		result += mid + 1
+	default: // a[mid] == search
+		result = mid // found
+	}
+	searchCount++
+	return
 }
 
