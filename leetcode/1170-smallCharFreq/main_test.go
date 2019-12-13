@@ -40,7 +40,7 @@ func Test_binarySearch(t *testing.T) {
 		wantResult      int
 		wantSearchCount int
 	}{
-		// TODO: Add test cases.
+		{name: "test1", args:args{a: []int{1,1,1,1,2,2,3,3,3,3,3,3,3,}, search: 3}, wantResult: 6, wantSearchCount: 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

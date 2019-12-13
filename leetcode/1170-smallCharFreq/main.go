@@ -71,6 +71,7 @@ func numSmallerByFrequencyOpt(queries []string, words []string) []int {
 	for _, query := range queries {
 		qf := fsf(query)
 		// do binary search
+		ss = append(ss, qf)
 	}
 	
 
