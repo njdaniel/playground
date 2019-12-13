@@ -71,13 +71,12 @@ func numSmallerByFrequencyOpt(queries []string, words []string) []int {
 	for _, query := range queries {
 		qf := fsf(query)
 		// do binary search
-		ss = append(ss, qf)
+		i, _ := binarySearch(ws, qf+1)
+		if i < 0 {
+			i = 0
+		}
+		ss = append(ss, len(ws[i:]))
 	}
-	
-
-	// search with binary search
-	
-	
 	return ss
 }
 

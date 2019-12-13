@@ -41,6 +41,7 @@ func Test_binarySearch(t *testing.T) {
 		wantSearchCount int
 	}{
 		{name: "test1", args:args{a: []int{1,1,1,1,2,2,3,3,3,3,3,3,3,}, search: 3}, wantResult: 6, wantSearchCount: 1},
+		{name: "test1", args:args{a: []int{3,3,3,3,3,3,3,3,3,3,3,}, search: 3}, wantResult: 0, wantSearchCount: 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -50,6 +51,30 @@ func Test_binarySearch(t *testing.T) {
 			}
 			if gotSearchCount != tt.wantSearchCount {
 				t.Errorf("binarySearch() gotSearchCount = %v, want %v", gotSearchCount, tt.wantSearchCount)
+			}
+		})
+	}
+}
+
+func Test_numSmallerByFrequencyOpt(t *testing.T) {
+	type args struct {
+		queries []string
+		words   []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{name: "ex2", args: args{
+			queries: []string{"bba","abaaaaaa","aaaaaa","bbabbabaab","aba","aa","baab","bbbbbb","aab","bbabbaabb"},
+			words: []string{"aaabbb","aab","babbab","babbbb","b","bbbbbbbbab","a","bbbbbbbbbb","baaabbaab","aa"}},
+			want: []int{6,1,1,2,3,3,3,1,3,2}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := numSmallerByFrequencyOpt(tt.args.queries, tt.args.words); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("numSmallerByFrequencyOpt() = %v, want %v", got, tt.want)
 			}
 		})
 	}
