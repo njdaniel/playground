@@ -15,7 +15,13 @@ func Test_shiftGrid(t *testing.T) {
 		args args
 		want [][]int
 	}{
-		// TODO: Add test cases.
+		{name: "test0: simple shift",
+			args:args{grid: [][]int{{1, 2, 3,},
+				{3, 4, 5,},
+				{7, 8, 9,}}},
+				want: [][]int{{9, 1, 2,},
+					{3, 4, 5,},
+					{6, 7, 8}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
