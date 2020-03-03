@@ -1,9 +1,14 @@
 package main
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
-	
+	k := 3
+	mat := [][]int{{1,1,0,0,0}, {1,1,1,1,0}, {1,1,0,0,0}, {1,1,1,1,1}}
+	fmt.Println(kWeakestRows(mat, k))
 }
 
 type RowPower struct {
@@ -53,7 +58,9 @@ func kWeakestRows(mat [][]int, k int) []int {
 		//rp = append(rp, RowPower{Row: k,})
 		rp := RowPower{Row: k, }
 		for _, v := range row {
-			rp.Power = v
+			if v == 1 {
+				rp.Power += 1
+			}
 		}
 		rps = append(rps, rp)
 	}
@@ -63,6 +70,7 @@ func kWeakestRows(mat [][]int, k int) []int {
 	// return [:k]
 	By(power).Sort(rps)
 	//return rps[:k]
+	fmt.Println(rps)
 	weakRows := make([]int, 0)
 	// adds O(N)
 	for x := 0; x < k; x++ {
