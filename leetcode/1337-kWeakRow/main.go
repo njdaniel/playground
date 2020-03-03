@@ -11,24 +11,41 @@ type RowPower struct {
 	 Power int
 }
 
-// ByPower is a sort.Interface for []RowPower
-// based on the power
-type ByPower []RowPower
+type By func(r1, r2 *RowPower) bool
 
-func (b ByPower) Len() int {
-	return len(b)
+func (by By) Sort(rows []RowPower)  {
+	rps := &RowSorter{
+		Rows: rows,
+		by:   by,
+	}
+	sort.Sort(rps)
 }
-func (b ByPower) Swap(i, j int)  {
-	b[i], b[j] = b[j], b[i]
+
+// RowSorter is for using the sort.Sort interface
+type RowSorter struct {
+	Rows []RowPower
+	by func(r1, r2 *RowPower) bool
 }
-func (b ByPower) Less(i, j int) bool {
-	return b[i].Power < b[j].Power
+// Len func for sort.Interface
+func (r *RowSorter) Len() int {
+	return len(r.Rows)
 }
+// Swap for sort.Interface
+func (r *RowSorter) Swap(i, j int)  {
+	r.Rows[i], r.Rows[j] = r.Rows[j], r.Rows[i]
+}
+// Less for sort.Interface
+func (r *RowSorter) Less(i, j int) bool {
+	return r.by(&r.Rows[i], &r.Rows[j])
+}
+
 
 func kWeakestRows(mat [][]int, k int) []int {
 	//rowPower := make(map[int]int, 0)
 	// switching to struct, not hashed like a map and can be ordered
-
+	power := func(r1, r2 *RowPower) {
+		return r1.Power < r2.Power
+	}
 	// go through mat and find power of each row
 	// O(NM)
 	var rps []RowPower
@@ -44,6 +61,6 @@ func kWeakestRows(mat [][]int, k int) []int {
 	// slice of rows strength in order
 	// O(N) can be optimized to just to k.. maybe
 	// return [:k]
-	sort.Sort(ByPower(rps))
+	
 	return rps[:k]
 }
