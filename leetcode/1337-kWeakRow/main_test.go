@@ -15,7 +15,6 @@ func Test_kWeakestRows(t *testing.T) {
 		args args
 		want []int
 	}{
-		// TODO: Add test cases.
 		{name: "test1", args:args{
 			mat: [][]int{{1,1,0},{1,1,0},{1,1,1},{1,1,1},{0,0,0},{1,1,1},{1,0,0}},
 			k:   6,

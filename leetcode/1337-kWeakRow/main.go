@@ -51,6 +51,12 @@ func kWeakestRows(mat [][]int, k int) []int {
 	power := func(r1, r2 *RowPower) bool {
 		return r1.Power < r2.Power
 	}
+	row := func(r1, r2 *RowPower) bool {
+		if r1.Power == r2.Power && r1.Row < r2.Row{
+			return true
+		}
+		return false
+	}
 	// go through mat and find power of each row
 	// O(NM)
 	var rps []RowPower
@@ -68,9 +74,11 @@ func kWeakestRows(mat [][]int, k int) []int {
 	// slice of rows strength in order
 	// O(N) can be optimized to just to k.. maybe
 	// return [:k]
+	fmt.Println("Before sort: ", rps)
 	By(power).Sort(rps)
+	By(row).Sort(rps)
 	//return rps[:k]
-	fmt.Println(rps)
+	fmt.Println("After sort: ",rps)
 	weakRows := make([]int, 0)
 	// adds O(N)
 	for x := 0; x < k; x++ {
