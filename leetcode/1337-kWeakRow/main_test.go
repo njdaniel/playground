@@ -16,6 +16,10 @@ func Test_kWeakestRows(t *testing.T) {
 		want []int
 	}{
 		// TODO: Add test cases.
+		{name: "test1", args:args{
+			mat: [][]int{{1,1,0},{1,1,0},{1,1,1},{1,1,1},{0,0,0},{1,1,1},{1,0,0}},
+			k:   6,
+		}, want: []int{4,6,0,1,2,3}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
