@@ -6,3 +6,4 @@ External_Libraries
 .vscode/*
 debug
 temp/*
+/temp/
