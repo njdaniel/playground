@@ -20,7 +20,7 @@ func shiftGrid(grid [][]int, k int) [][]int {
 	}
 	//tmp := make([]int, 0)
 	tmp := s[len(s)-k:]
-	s = s[:-k]
+	s = s[:len(s)-k]
 	s = append(tmp, s...)
 	newGrid := make([][]int, 0)
 	for x := 0; x < n; x++ {
