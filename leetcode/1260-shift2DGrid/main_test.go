@@ -22,10 +22,14 @@ func Test_shiftGrid(t *testing.T) {
 				want: [][]int{{9, 1, 2,},
 					{3, 4, 5,},
 					{6, 7, 8}}},
-		{name: "large k", args:args{
+		{name: "one column", args:args{
 			grid: [][]int{{1}, {2}, {3}, {4}, {7}, {6}, {5}},
 			k:   23,
 		}, want: [][]int{{6}, {5}, {1}, {2}, {3}, {4}, {7}}},
+		{name: "large k", args:args{
+			grid: [][]int{{1}},
+			k:    100,
+		}, want: [][]int{{1}}},
 
 	}
 	for _, tt := range tests {

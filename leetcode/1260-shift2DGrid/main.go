@@ -1,7 +1,11 @@
 package main
 
+import "fmt"
+
 func main() {
-	grid :=
+	grid := [][]int{{1}, {2}, {3}, {4}, {7}, {6}, {5}}
+	k := 23
+	fmt.Println(shiftGrid(grid, k))
 }
 
 func shiftGrid(grid [][]int, k int) [][]int {
@@ -18,15 +22,23 @@ func shiftGrid(grid [][]int, k int) [][]int {
 		n = len(row)
 		s = append(s, row...)
 	}
+	fmt.Println("row lengh: ", n)
+	totalLength := m*n
+	if k > totalLength {
+		k = k % totalLength
+	} else if k % totalLength == 0 {
+		return grid
+	}
+
 	//tmp := make([]int, 0)
 	tmp := s[len(s)-k:]
 	s = s[:len(s)-k]
 	s = append(tmp, s...)
 	newGrid := make([][]int, 0)
-	for x := 0; x < n; x++ {
-		tmp := s[:m]
+	for x := 0; x < m; x++ {
+		tmp := s[:n]
 		newGrid = append(newGrid, tmp)
-		s = s[m:]
+		s = s[n:]
 	}
 	return newGrid
 }
