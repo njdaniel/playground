@@ -1,6 +1,7 @@
 package palindrome
 
 import (
+	"fmt"
 	"reflect"
 	"strconv"
 )
@@ -37,6 +38,7 @@ func IsPalindrome(runes []rune) bool {
 	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
 		reverse[i], reverse[j] = reverse[j], reverse[i]
 	}
+	fmt.Println(reverse)
 	// compare two arrays?
 	if reflect.DeepEqual(runes, reverse) {
 		return true
