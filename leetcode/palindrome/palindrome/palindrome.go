@@ -34,13 +34,15 @@ func IsPalindromeOriginal(x int) bool {
 }
 
 func IsPalindrome(runes []rune) bool {
-	reverse := runes
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+	reverse := make([]rune, len(runes))
+	copy(reverse, runes)
+	for i, j := 0, len(reverse)-1; i < j; i, j = i+1, j-1 {
 		reverse[i], reverse[j] = reverse[j], reverse[i]
 	}
 	fmt.Println(reverse)
 	// compare two arrays?
 	if reflect.DeepEqual(runes, reverse) {
+		fmt.Println("runes ", runes, " = ", reverse)
 		return true
 	}
 	return false
