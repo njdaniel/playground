@@ -1,6 +1,9 @@
-package main
+package substring
 
-import "testing"
+import (
+	"playground/leetcode/1332-RemovePalindromicSubseq/substring"
+	"testing"
+)
 
 func Test_removePalindromeSub(t *testing.T) {
 	type args struct {
@@ -15,7 +18,7 @@ func Test_removePalindromeSub(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := removePalindromeSub(tt.args.s); got != tt.want {
+			if got := main.removePalindromeSub(tt.args.s); got != tt.want {
 				t.Errorf("removePalindromeSub() = %v, want %v", got, tt.want)
 			}
 		})
