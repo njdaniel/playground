@@ -26,7 +26,7 @@ func Benchmark_countSwap(b *testing.B) {
 		name string
 		args args
 	}{
-		{name: "b1", args:args{a: []int32{3,2,1}}},
+		{name: "b1", args:args{a: []int32{3,2,1,4,5,6,9,8,7}}},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
