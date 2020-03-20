@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	prices := []int32{3,2,1}
-	saving := int32(3)
+	prices := []int32{1, 12, 5, 10}
+	saving := int32(4)
 	fmt.Println(maximumToys(prices, saving))
 }
 
