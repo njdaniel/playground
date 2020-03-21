@@ -7,10 +7,10 @@ import (
 
 func main() {
 	var r int64
-	r = 2
+	r = 3
 	arr := make([]int64, 0)
-	arr = []int64{1, 2, 2, 4}
-	fmt.Println(countTriplets(arr, r))
+	arr = []int64{1, 3, 9, 9, 27, 81}
+	fmt.Println(countTriplets2(arr, r))
 }
 
 // Complete the countTriplets function below.
@@ -32,6 +32,33 @@ func countTriplets(arr []int64, r int64) int64 {
 				if _, ok := trips[string(pos)]; !ok {
 					if arr[i]*r==arr[j] && arr[j]*r==arr[k] {
 						trips[string(pos)] = nil
+					}
+				}
+			}
+		}
+	}
+	return int64(len(trips))
+}
+
+
+
+// Complete the countTriplets function below.
+// find num of triplets with common ratio r and i<j<k
+// assume arr passed in order
+// assume len(arr) > 2
+// using fmt.Sprint for string conc
+func countTriplets2(arr []int64, r int64) int64 {
+	// store the positions of each triplet
+	// check if used and store to return num of triplets
+	trips := make(map[string]interface{},0)
+	// N(O^3) for loop for each
+	for i := 0; i < len(arr) - 2; i++ {
+		for j := 1; j < len(arr) -1; j++ {
+			for k :=2; k < len(arr); k++ {
+				pos := fmt.Sprintf("%d%d%d", i, j, k)
+				if _, ok := trips[pos]; !ok {
+					if arr[i]*r==arr[j] && arr[j]*r==arr[k] {
+						trips[pos] = nil
 					}
 				}
 			}
