@@ -6,12 +6,13 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
 	"time"
 )
 
 func main() {
 	fmt.Println(time.Now().Format("2006-01-02T15:04:05"))
-	files := []string{"file1.log"}
+	files := []string{"file1.log", "file2.log"}
 	AggregateLogs(files)
 }
 
@@ -64,51 +65,58 @@ type Log struct {
 	TimeStamp time.Time
 	Msg string
 }
-
+var wg sync.WaitGroup
 // AggregateLogs prints out the log records in order
 func AggregateLogs(files []string) {
-	ch := make(chan time.Time)
+	wg.Add(2)
+	ch1 := make(chan time.Time)
+	ch2 := make(chan time.Time)
 	//done := make(chan bool)
 	//logTimes := make([]chan time.Time, len(files))
-	for _, file := range files {
-		//setup goroutine
-		go func() {
-			readFile, err := os.Open(file)
-			if err != nil {
-				log.Fatalf("error failed to open file: %v", err)
-			}
-			fileScanner := bufio.NewScanner(readFile)
-			fileScanner.Split(bufio.ScanLines)
-			for fileScanner.Scan() {
-				tss := strings.Split(fileScanner.Text(), " ")[0]
-				//fmt.Println(ts)
-				layout := "2006-01-02T15:04:05"
-				ts, err := time.Parse(layout, tss)
-				if err != err {
-					fmt.Println(err)
-				}
-				ch <- ts
-			}
-			close(ch)
-			//<-done
-		}()
-		for {
-			ts, ok := <- ch
-			if !ok {
-				break
-			}
-			fmt.Println(ts.String())
+	go sendTimeStamps(files[0], ch1)
+	go sendTimeStamps(files[1], ch2)
+
+	for {
+		ts1, ok := <- ch1
+		if !ok {
+			break
 		}
-		//<-done
-		//get timestamp
-		//send back
+		ts2, ok := <- ch2
+		if !ok {
+			break
+		}
+		fmt.Println(ts1.String())
+		fmt.Println(ts2.String())
 	}
-	//compare all the returned timestamps
+	wg.Wait()
+	// TODO: compare all the returned timestamps
 	//for ;len(logTimes) == 0; {
 	//	for k, v := range logTimes {
 	//		var oldest time.Time
 	//
 	//	}
 	//}
+}
+
+func sendTimeStamps(file string, ch chan time.Time)  {
+	readFile, err := os.Open(file)
+	if err != nil {
+		log.Fatalf("error failed to open file: %v", err)
+	}
+	fileScanner := bufio.NewScanner(readFile)
+	fileScanner.Split(bufio.ScanLines)
+	for fileScanner.Scan() {
+		tss := strings.Split(fileScanner.Text(), " ")[0]
+		//fmt.Println(ts)
+		layout := "2006-01-02T15:04:05"
+		ts, err := time.Parse(layout, tss)
+		if err != err {
+			fmt.Println(err)
+		}
+		ch <- ts
+	}
+	close(ch)
+	wg.Done()
+	//<-done
 }
 
