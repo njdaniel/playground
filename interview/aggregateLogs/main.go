@@ -68,7 +68,7 @@ type Log struct {
 // AggregateLogs prints out the log records in order
 func AggregateLogs(files []string) {
 	ch := make(chan time.Time)
-	done := make(chan bool)
+	//done := make(chan bool)
 	//logTimes := make([]chan time.Time, len(files))
 	for _, file := range files {
 		//setup goroutine
@@ -90,7 +90,7 @@ func AggregateLogs(files []string) {
 				ch <- ts
 			}
 			close(ch)
-			<-done
+			//<-done
 		}()
 		for {
 			ts, ok := <- ch
@@ -99,7 +99,7 @@ func AggregateLogs(files []string) {
 			}
 			fmt.Println(ts.String())
 		}
-		<-done
+		//<-done
 		//get timestamp
 		//send back
 	}
