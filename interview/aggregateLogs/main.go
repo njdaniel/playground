@@ -11,7 +11,8 @@ import (
 
 func main() {
 	fmt.Println(time.Now().Format("2006-01-02T15:04:05"))
-	AggregateLogs("file1.log")
+	files := []string{"file1.log"}
+	AggregateLogs(files)
 }
 
 // print out multiple log records from multiple log files in order
@@ -61,27 +62,48 @@ func main() {
 
 type Log struct {
 	TimeStamp time.Time
-	msg string
+	Msg string
 }
 
 // AggregateLogs prints out the log records in order
-func AggregateLogs(file string) {
+func AggregateLogs(files []string) {
+	ch := make(chan time.Time)
+	done := make(chan bool)
 	//logTimes := make([]chan time.Time, len(files))
-	//for _, file := range files {
+	for _, file := range files {
 		//setup goroutine
-		readFile, err := os.Open(file)
-		if err != nil {
-			log.Fatalf("error failed to open file: %v", err)
+		go func() {
+			readFile, err := os.Open(file)
+			if err != nil {
+				log.Fatalf("error failed to open file: %v", err)
+			}
+			fileScanner := bufio.NewScanner(readFile)
+			fileScanner.Split(bufio.ScanLines)
+			for fileScanner.Scan() {
+				tss := strings.Split(fileScanner.Text(), " ")[0]
+				//fmt.Println(ts)
+				layout := "2006-01-02T15:04:05"
+				ts, err := time.Parse(layout, tss)
+				if err != err {
+					fmt.Println(err)
+				}
+				ch <- ts
+			}
+			close(ch)
+			<-done
+		}()
+		// TODO: grab all records from log file
+		for ;ch != nil; {
+			ts, ok := <- ch
+			if !ok {
+				break
+			}
+			fmt.Println(ts.String())
 		}
-		fileScanner := bufio.NewScanner(readFile)
-		fileScanner.Split(bufio.ScanLines)
-		for fileScanner.Scan() {
-			ts := strings.Split(fileScanner.Text(), " ")[0]
-			fmt.Println(ts)
-		}
+		<-done
 		//get timestamp
 		//send back
-	//}
+	}
 	//compare all the returned timestamps
 	//for ;len(logTimes) == 0; {
 	//	for k, v := range logTimes {
