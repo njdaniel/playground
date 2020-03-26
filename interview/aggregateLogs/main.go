@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
 func main() {
 	fmt.Println(time.Now().Format("2006-01-02T15:04:05"))
+	AggregateLogs("file1.log")
 }
 
 // print out multiple log records from multiple log files in order
@@ -63,9 +65,9 @@ type Log struct {
 }
 
 // AggregateLogs prints out the log records in order
-func AggregateLogs(files []string) {
-	logTimes := make([]chan time.Time, len(files))
-	for _, file := range files {
+func AggregateLogs(file string) {
+	//logTimes := make([]chan time.Time, len(files))
+	//for _, file := range files {
 		//setup goroutine
 		readFile, err := os.Open(file)
 		if err != nil {
@@ -73,14 +75,19 @@ func AggregateLogs(files []string) {
 		}
 		fileScanner := bufio.NewScanner(readFile)
 		fileScanner.Split(bufio.ScanLines)
+		for fileScanner.Scan() {
+			ts := strings.Split(fileScanner.Text(), " ")[0]
+			fmt.Println(ts)
+		}
 		//get timestamp
 		//send back
-	}
+	//}
 	//compare all the returned timestamps
-	for i := 1;i > len(logTimes); {
-		for k, v := range logTimes {
-			var oldest time.Time
-
-		}
-	}
+	//for ;len(logTimes) == 0; {
+	//	for k, v := range logTimes {
+	//		var oldest time.Time
+	//
+	//	}
+	//}
 }
+
