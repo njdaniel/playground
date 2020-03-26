@@ -92,8 +92,7 @@ func AggregateLogs(files []string) {
 			close(ch)
 			<-done
 		}()
-		// TODO: grab all records from log file
-		for ;ch != nil; {
+		for {
 			ts, ok := <- ch
 			if !ok {
 				break
