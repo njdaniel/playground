@@ -35,10 +35,27 @@ func myAtoi(str string) int {
 			break
 		}
 	}
-	if len(str) > 9 && str[0] != '-' {
+	//get rid of leading zeros
+	positive := true
+	if str[0] == '-' {
+		positive = false
+		str = str[1:]
+	}
+	rev := ReverseString(str)
+	for i := len(rev)-1; i > 0; i-- {
+		if rev[i] != '0' {
+			rev = rev[:i]
+		}
+	}
+	str = ReverseString(rev)
+
+	if len(str) > 9 && positive{
 		return MaxInt
-	} else if len(str) > 9 && str[0] == '-' {
+	} else if len(str) > 9 && !positive {
 		return MinInt
+	}
+	if !positive {
+		str = fmt.Sprintf("-%s", str)
 	}
 	n, err := strconv.Atoi(str)
 	if err != nil {
@@ -50,4 +67,12 @@ func myAtoi(str string) int {
 		n = MinInt
 	}
 	return n
+}
+
+func ReverseString(s string) string {
+	rs := []rune(s)
+	for i , j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		rs[i], rs[j] = rs[j], rs[i]
+	}
+	return string(rs)
 }
