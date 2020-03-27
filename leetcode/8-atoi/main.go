@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	n := "-20000000000000000000"
+	n := "4193 with words"
 	fmt.Println(myAtoi(n))
 }
 
@@ -20,31 +20,37 @@ func myAtoi(str string) int {
 	str = strings.TrimSpace(str)
 	str = strings.Split(str, " ")[0]
 	str = strings.Split(str, ".")[0]
-	i := 0
+	//i := 0
 	if len(str) == 0 {
 		return 0
 	}
 
-	if str[0] == '-' || str[0] == '+' {
-		i = 1
-	}
-	for ;i < len(str); i++{
-		if !unicode.IsDigit(rune(str[i])) {
-			r := []rune(str)[:i]
-			str = string(r)
-			break
-		}
+	//if str[0] == '-' || str[0] == '+' {
+	//	i = 1
+	//}
+	if len(str) == 0 {
+		return 0
 	}
 	//get rid of leading zeros
 	positive := true
 	if str[0] == '-' {
 		positive = false
 		str = str[1:]
+	} else if str[0] == '+' {
+		str = str[1:]
+	}
+	for i := 0;i < len(str); i++{
+		if !unicode.IsDigit(rune(str[i])) {
+			r := []rune(str)[:i]
+			str = string(r)
+			break
+		}
 	}
 	rev := ReverseString(str)
 	for i := len(rev)-1; i > 0; i-- {
 		if rev[i] != '0' {
-			rev = rev[:i]
+			rev = rev[:i+1]
+			break
 		}
 	}
 	str = ReverseString(rev)
@@ -61,11 +67,11 @@ func myAtoi(str string) int {
 	if err != nil {
 		return 0
 	}
-	if n > MaxInt {
-		n = MaxInt
-	} else if n < MinInt {
-		n = MinInt
-	}
+	//if n > MaxInt {
+	//	n = MaxInt
+	//} else if n < MinInt {
+	//	n = MinInt
+	//}
 	return n
 }
 
