@@ -77,16 +77,31 @@ func AggregateLogs(files []string) {
 	go sendTimeStamps(files[1], ch2)
 
 	for {
-		ts1, ok := <- ch1
-		if !ok {
-			break
+		// TODO: can only compare the channel if it == to the same ref data structure or nil
+		if ch1 < ch2 {
+			ts, ok := <- ch1
+			if !ok {
+				break
+			}
+			fmt.Println(ts.String())
+		} else if ch2 < ch1 {
+			ts, ok := <- ch2
+			if !ok {
+				break
+			}
+			fmt.Println(ts.String())
+		} else if ch2 == ch1 {
+			ts1, ok := <- ch1
+			if !ok {
+				break
+			}
+			ts2, ok := <- ch2
+			if !ok {
+				break
+			}
+			fmt.Println(ts1.String())
+			fmt.Println(ts2.String())
 		}
-		ts2, ok := <- ch2
-		if !ok {
-			break
-		}
-		fmt.Println(ts1.String())
-		fmt.Println(ts2.String())
 	}
 	wg.Wait()
 	// TODO: compare all the returned timestamps
