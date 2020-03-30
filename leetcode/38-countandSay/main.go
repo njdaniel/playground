@@ -1,5 +1,7 @@
 package main
 
+import "strconv"
+
 func main() {
 	
 }
@@ -12,13 +14,31 @@ func main() {
 //1 is read off as "one 1" or 11.
 //11 is read off as "two 1s" or 21.
 //21 is read off as "one 2, then one 1" or 1211.
+// 1 <= n <= 30
 func countAndSay(n int) string {
 	//recursive count until n is met
-	f := func() {
-
+	si := []int{1}
+	f := func() func() []int {
+		r := 1
+		count := 0
+		tmp := make([]int, 0)
+		return func() []int {
+			for _, v := range si{
+				if r == v {
+					count++
+				} else {
+					tmp = append(tmp, count, r)
+					r = v
+				}
+			}
+			return tmp
+		}
 	}
+	closure := f()
+	sitmp := make([]int, 0)
 	for i := 1; i >= n; i++ {
-		f()
+		sitmp = closure()
 		n--
 	}
+	si
 }
