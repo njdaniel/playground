@@ -15,6 +15,7 @@ func main() {
 //11 is read off as "two 1s" or 21.
 //21 is read off as "one 2, then one 1" or 1211.
 // 1 <= n <= 30
+//not working
 func countAndSay(n int) string {
 	//recursive count until n is met
 	si := []int{1}
@@ -40,5 +41,5 @@ func countAndSay(n int) string {
 		sitmp = closure()
 		n--
 	}
-	si
+	return ""
 }
