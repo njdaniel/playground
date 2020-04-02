@@ -27,7 +27,9 @@ func squareDigits(n []rune) int {
 		buf := make([]byte, 1)
 		_ = utf8.EncodeRune(buf, n[0])
 		v, _ := strconv.Atoi(string(buf))
-		return v
+		if v == 1 {
+			return v
+		}
 	}
 	for _, v := range n {
 		buf := make([]byte, 1)
