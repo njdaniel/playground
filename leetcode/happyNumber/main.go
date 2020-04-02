@@ -1,9 +1,14 @@
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+	"unicode/utf8"
+)
 
 func main() {
-	
+	input := 19
+	fmt.Println(isHappy(input))
 }
 
 func isHappy(n int) bool {
@@ -19,18 +24,20 @@ func isHappy(n int) bool {
 func squareDigits(n []rune) int {
 	sum := 0
 	if len(n) == 1 {
-		return sum
+		buf := make([]byte, 1)
+		_ = utf8.EncodeRune(buf, n[0])
+		v, _ := strconv.Atoi(string(buf))
+		return v
 	}
 	for _, v := range n {
-		sum += int(v)*int(v)
+		buf := make([]byte, 1)
+		_ = utf8.EncodeRune(buf, v)
+		v, _ := strconv.Atoi(string(buf))
+		sum += v*v
 	}
 
 	sumr := make([]rune, 0)
 	sumr = []rune(strconv.Itoa(sum))
-	squareDigits(sumr)
-	if len(sumr) == 1 {
-		return sum
-	}
-	return 0
+	return squareDigits(sumr)
 
 }
