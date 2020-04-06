@@ -10,7 +10,7 @@ func Test_moveZeroes(t *testing.T) {
 		name string
 		args args
 	}{
-		// TODO: Add test cases.
+		{name: "test1", args: args{nums: []int{0,0,1}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

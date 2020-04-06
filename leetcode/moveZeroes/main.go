@@ -13,9 +13,11 @@ func main() {
 //Input: [0,1,0,3,12]
 //Output: [1,3,12,0,0]
 func moveZeroes(nums []int)  {
-	for i := 0; i < len(nums); i++ {
-		if nums[i] == 0 {
-			nums = append(nums[:i], (append(nums[i+1:], nums[i]))...)
+	for i,j := 0,0; i < len(nums);i++  {
+		if nums[j] == 0 {
+			nums = append(nums[:j], (append(nums[j+1:], nums[j]))...)
+		} else {
+			j++
 		}
 	}
 }
