@@ -1,10 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"playground/leetcode/maxProfit/bruteforce"
+)
 
 func main() {
 	input := []int{7,1,5,3,6,4}
-	fmt.Println(maxProfit(input))
+	fmt.Println(bruteforce.MaxProfit(input))
 }
 
 func maxProfit(prices []int) int {
