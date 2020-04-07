@@ -15,7 +15,9 @@ func maxProfit(prices []int) int {
 		//check if its the last day
 		if i == len(prices)-1 {
 			if !buy {
-
+				if price > stockValue {
+					profit += (price -stockValue)
+				}
 			}
 			break
 		}
