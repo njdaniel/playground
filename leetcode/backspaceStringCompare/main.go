@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	input1 := "ab#c"
-	input2 := "ad#c"
+	input1 := "ab##c"
+	input2 := "c"
 	fmt.Println(backspaceCompare(input1, input2))
 }
 
@@ -15,22 +15,24 @@ func backspaceCompare(S, T string) bool {
 	stackT := make([]rune, 0)
 
 	// push and pop onto stack for S
-	for i, v := range S {
+	for _, v := range S {
 		if v == '#' {
 			if len(stackS) > 0 {
-				stackS = stackS[:i-1]
+				stackS = stackS[:(len(stackS)-1)]
 			}
+		} else {
+			stackS = append(stackS, v)
 		}
-		stackS = append(stackS, v)
 	}
 	// push and pop onto stack for T
-	for i, v := range T {
+	for _, v := range T {
 		if v == '#' {
 			if len(stackT) > 0 {
-				stackT = stackT[:i-1]
+				stackT = stackT[:(len(stackT)-1)]
 			}
+		} else {
+			stackT = append(stackT, v)
 		}
-		stackT = append(stackT, v)
 	}
 	// compare if two strings are the same
 	if string(stackS) == string(stackT) {

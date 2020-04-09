@@ -17,6 +17,8 @@ func Test_backspaceCompare(t *testing.T) {
 		{name: "test2", args: args{S: "ab#c", T: "ad#c"}, want: true},
 		{name: "test3: failure", args: args{S: "abc", T: "adc"}, want: false},
 		{name: "test4: multiple backspaces", args: args{S: "ab##c", T: "c"}, want: true},
+		{name: "test5: multiple backspaces", args: args{S: "c", T: "ab##c"}, want: true},
+		{name: "test6: backspace in beginning", args: args{S: "##", T: "###"}, want: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
