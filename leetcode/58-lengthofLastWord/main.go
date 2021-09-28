@@ -17,11 +17,16 @@ func main() {
 func lengthOfLastWord(s string) int {
 	var l int
 
+	//remove leading and trailing whitespace
+	s = strings.TrimSpace(s)
+
 	//split s string by " "
 	ss := strings.Split(s, " ")
 	fmt.Println(ss)
+	fmt.Println(ss[len(ss)-1])
 
 	//take len of last word
+	l = len(ss[len(ss)-1])
 
 	return l
 }
