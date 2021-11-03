@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 
+	fmt.Println("staring")
 	c := []int{1, 2, 3, 1}
 	q := [][]int{{2, 1}, {2, 2}}
 	fmt.Println(shortestDistanceColor(c, q))
