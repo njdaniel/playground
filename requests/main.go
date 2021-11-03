@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -17,11 +17,10 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(resp.StatusCode)
-	var body []byte
-	_, err = io.ReadFull(resp.Body, body)
-	resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
 	if err != nil {
-		fmt.Println("error io reading body: ", err)
+		fmt.Println("error reading response body", err)
 	}
-	fmt.Println(body)
+	fmt.Println(string(body))
 }
