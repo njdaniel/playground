@@ -24,3 +24,8 @@ func main() {
 	}
 	fmt.Println(string(body))
 }
+
+func SecureToken() {
+	AuthorizationURL := "https://login.eveonline.com/v2/oauth/token"
+	resp, err := http.PostForm()
+}
