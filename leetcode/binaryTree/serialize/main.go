@@ -7,8 +7,8 @@ import (
 )
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -18,13 +18,21 @@ func main() {
 	fmt.Println(node)
 	fmt.Println(*node.Left)
 	fmt.Println(*node.Right)
-	
+
+	r3 := &TreeNode{5, nil, nil}
+	r1 := &TreeNode{5, nil, r3}
+	r2 := &TreeNode{5, nil, nil}
+	l2 := &TreeNode{5, nil, nil}
+	l1 := &TreeNode{1, l2, r2}
+	root := TreeNode{5, l1, r1}
+
+	fmt.Println(Serialize(&root))
 }
 
 // Deserialize func changes a bfs slice to a linked list
 func Deserialize(s string) *TreeNode {
 	// serialize to string slice
-	s = s[1:len(s)-1]
+	s = s[1 : len(s)-1]
 	fmt.Println(s)
 	ss := strings.Split(s, ", ")
 	fmt.Println(ss)
@@ -49,12 +57,12 @@ func Deserialize(s string) *TreeNode {
 		//fmt.Printf("val: %v", x.Val)
 		var pLeft *TreeNode
 		var pRight *TreeNode
-		if  k+1 > len(q)-1 {
+		if k+1 > len(q)-1 {
 			pLeft = nil
 			pRight = nil
 			continue
 		}
-		if  k+2 > len(q)-1 {
+		if k+2 > len(q)-1 {
 			pRight = nil
 			continue
 		}
@@ -68,8 +76,49 @@ func Deserialize(s string) *TreeNode {
 	return q[0]
 }
 
+// Queue is a linked list queue for bfs
+type Queue struct {
+	size  int
+	Head  *TreeNode
+	queue []*TreeNode
+}
+
+func NewQueue() *Queue {
+	return new(Queue)
+}
+
+func (q *Queue) Push(node *TreeNode) {
+
+}
+
+func (q *Queue) Pop() {
+
+}
+
+func (q *Queue) IsEmpty() bool {
+	return q.size == 0
+}
+
 // Serialize func changes linked list to a serialized string
 func Serialize(root *TreeNode) string {
-	fmt.Println(root)
-	return ""
+	serial := make([]string, 0)
+	q0 := NewQueue()
+	var bfs func(q Queue)
+	bfs = func(q Queue) {
+		//create new queue for next level
+		qn := NewQueue()
+		for !q.IsEmpty() {
+			serial = append(serial, strconv.Itoa(q.Head.Val))
+			if q.Head.Left != nil {
+				qn.Push(q.Head.Left)
+			}
+			if q.Head.Right != nil {
+				qn.Push(q.Head.Right)
+			}
+			q.Pop()
+		}
+		bfs(*qn)
+	}
+	bfs(*q0)
+	return strings.Join(serial, ", ")
 }
