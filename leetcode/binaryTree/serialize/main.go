@@ -88,11 +88,17 @@ func NewQueue() *Queue {
 }
 
 func (q *Queue) Push(node *TreeNode) {
-
+	q.queue = append(q.queue, node)
+	q.Head = q.queue[len(q.queue)-1]
+	q.size++
 }
 
-func (q *Queue) Pop() {
-
+func (q *Queue) Pop() *TreeNode {
+	node := q.queue[len(q.queue)-1]
+	q.queue = q.queue[:len(q.queue)-1]
+	q.Head = q.queue[len(q.queue)-1]
+	q.size--
+	return node
 }
 
 func (q *Queue) IsEmpty() bool {
