@@ -13,11 +13,11 @@ type TreeNode struct {
 }
 
 func main() {
-	s := "[1, 2, 3, null, null, 4, 5]"
-	node := Deserialize(s)
-	fmt.Println(node)
-	fmt.Println(*node.Left)
-	fmt.Println(*node.Right)
+	//s := "[1, 2, 3, null, null, 4, 5]"
+	//node := Deserialize(s)
+	//fmt.Println(node)
+	//fmt.Println(*node.Left)
+	//fmt.Println(*node.Right)
 
 	r3 := &TreeNode{5, nil, nil}
 	r1 := &TreeNode{5, nil, r3}
@@ -96,7 +96,11 @@ func (q *Queue) Push(node *TreeNode) {
 func (q *Queue) Pop() *TreeNode {
 	node := q.queue[len(q.queue)-1]
 	q.queue = q.queue[:len(q.queue)-1]
-	q.Head = q.queue[len(q.queue)-1]
+	if !q.IsEmpty() {
+		q.Head = q.queue[len(q.queue)-1]
+	} else {
+		q.Head = nil
+	}
 	q.size--
 	return node
 }
@@ -110,7 +114,11 @@ func Serialize(root *TreeNode) string {
 	serial := make([]string, 0)
 	q0 := NewQueue()
 	var bfs func(q Queue)
+	q0.Push(root)
 	bfs = func(q Queue) {
+		if q.IsEmpty() {
+			return
+		}
 		//create new queue for next level
 		qn := NewQueue()
 		for !q.IsEmpty() {
