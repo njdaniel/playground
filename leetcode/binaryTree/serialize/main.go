@@ -122,13 +122,24 @@ func Serialize(root *TreeNode) string {
 		//create new queue for next level
 		qn := NewQueue()
 		for !q.IsEmpty() {
-			serial = append(serial, strconv.Itoa(q.Head.Val))
+			if q.Head == nil {
+				serial = append(serial, "null")
+				q.Pop()
+				continue
+			} else {
+				serial = append(serial, strconv.Itoa(q.Head.Val))
+			}
 			if q.Head.Left != nil {
 				qn.Push(q.Head.Left)
+			} else if q.Head.Left == nil && q.Head.Right != nil {
+				qn.Push(nil)
 			}
 			if q.Head.Right != nil {
 				qn.Push(q.Head.Right)
+			} else if q.Head.Right == nil && q.Head.Left != nil {
+				qn.Push(nil)
 			}
+
 			q.Pop()
 		}
 		bfs(*qn)
