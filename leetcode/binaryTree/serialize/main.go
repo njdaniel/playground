@@ -19,10 +19,10 @@ func main() {
 	//fmt.Println(*node.Left)
 	//fmt.Println(*node.Right)
 
-	r3 := &TreeNode{5, nil, nil}
-	r1 := &TreeNode{5, nil, r3}
-	r2 := &TreeNode{5, nil, nil}
-	l2 := &TreeNode{5, nil, nil}
+	r3 := &TreeNode{6, nil, nil}
+	r1 := &TreeNode{2, nil, r3}
+	r2 := &TreeNode{4, nil, nil}
+	l2 := &TreeNode{3, nil, nil}
 	l1 := &TreeNode{1, l2, r2}
 	root := TreeNode{5, l1, r1}
 
@@ -89,16 +89,16 @@ func NewQueue() *Queue {
 
 func (q *Queue) Push(node *TreeNode) {
 	q.queue = append(q.queue, node)
-	q.Head = q.queue[len(q.queue)-1]
+	q.Head = q.queue[0]
 	q.size++
 }
 
 func (q *Queue) Pop() *TreeNode {
-	node := q.queue[len(q.queue)-1]
-	q.queue = q.queue[:len(q.queue)-1]
+	node := q.queue[0]
+	q.queue = q.queue[1:len(q.queue)]
 	q.size--
 	if !q.IsEmpty() {
-		q.Head = q.queue[len(q.queue)-1]
+		q.Head = q.queue[0]
 	} else {
 		q.Head = nil
 	}
