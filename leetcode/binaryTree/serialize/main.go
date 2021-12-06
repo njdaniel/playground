@@ -96,12 +96,12 @@ func (q *Queue) Push(node *TreeNode) {
 func (q *Queue) Pop() *TreeNode {
 	node := q.queue[len(q.queue)-1]
 	q.queue = q.queue[:len(q.queue)-1]
+	q.size--
 	if !q.IsEmpty() {
 		q.Head = q.queue[len(q.queue)-1]
 	} else {
 		q.Head = nil
 	}
-	q.size--
 	return node
 }
 
