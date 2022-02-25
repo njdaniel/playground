@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	s := "3[a]2[bc]"
+	//s := "3[a]2[bc]"
+	s := "3[aacb]"
 	fmt.Println(decodeString(s))
 }
 
@@ -18,73 +19,132 @@ func main() {
 //  s is guaranteed to be a valid input.
 //  All the integers in s are in the range [1, 300]
 func decodeString(s string) string {
+	//mutable temp of s, decoding replaces
+	rs := []rune(s)
 
-	//convert to []
-	//loop through s finding the end of the decodeString
-	//if the []rune isnt empty call decodeString
-	//else if its empty find the k and the s and create the []rune
-	//check if the []rune(s) is empty
-	//if yes return the result if not find the next part of the pattern
-	ra := []rune(s)
-	//raTemp := make([]rune, 0)
+	//find simple section to decode
+	//  if one bracket: decode
+	//  no brackets: return
+	//  multiple bracket pairs: simplify
 
-	//check if only one bracket set
 	numbrackets := 0
-	for _, v := range ra {
+	for _, v := range rs {
 		if v == ']' {
 			numbrackets++
 		}
 	}
-	if numbrackets == 1 {
-		//k := 0
-		ks := make([]rune, 0)
-		es := ""
-		p := 0
-		for i, v := range ra {
-			if v == '[' {
-				p = i
-				break
-			}
-			ks = append(ks, v)
-		}
-		k, err := strconv.Atoi(string(ks))
-		if err != nil {
-			log.Fatal(err)
-		}
-	} else {
 
-		var pend int
-		var pbegin int
-		for i, v := range ra {
-			if v == ']' {
-				pend = i
-				//find the beginning of the k[encode](pbegin)
-				for j := i - 1; j >= 0; j-- {
-					if isNumber(ra[j]) {
-						for k := j - 1; k >= 0; k-- {
-							if !isNumber(ra[k]) {
-								pbegin = k + 1
-								break
-							}
-							pbegin = 0
-						}
-					}
+	switch {
+	case numbrackets > 1:
+		fmt.Println("multiple brackets")
+	case numbrackets == 1:
+		fmt.Println("one bracket pair")
+		k := 0
+		krs := make([]rune, 0)
+		encoded := make([]rune, 0)
+		for i, v := range rs {
+			if v == '[' {
+				krs = rs[:i]
+				kt, err := strconv.Atoi(string(krs))
+				if err != nil {
+					log.Fatal(err)
 				}
-				pend = i + 1
-				raTemp := ra[pbegin:pend]
-				decodedString := decodeString(string(raTemp))
-				//cut + replace
-				ra = append(ra[:pbegin], ra[pend-1:]...)
-				ra = append(ra[:pbegin], append([]rune(decodedString), ra[pbegin:]...)...)
-				//break
-				i = 0
+				k = kt
+				encoded = rs[i+1 : len(rs)-1]
 			}
+			break
 		}
+		fmt.Printf("k: %d \t encoded: %v", k, encoded)
+		return string(decode(k, encoded))
+
+	default:
+		fmt.Println("no brackets")
 	}
 
-	//remove and replace
-	return string(ra)
+	return string(rs)
 }
+
+func decode(k int, encoded []rune) []rune {
+	rs := make([]rune, 0)
+	for i := 0; i < k; i++ {
+		rs = append(rs, encoded...)
+	}
+	return rs
+}
+
+//func decodeString(s string) string {
+//
+//	//convert to []
+//	//loop through s finding the end of the decodeString
+//	//if the []rune isnt empty call decodeString
+//	//else if its empty find the k and the s and create the []rune
+//	//check if the []rune(s) is empty
+//	//if yes return the result if not find the next part of the pattern
+//	ra := []rune(s)
+//	//raTemp := make([]rune, 0)
+//
+//	//check if only one bracket set
+//	numbrackets := 0
+//	for _, v := range ra {
+//		if v == ']' {
+//			numbrackets++
+//		}
+//	}
+//	if numbrackets == 1 {
+//		//k := 0
+//		ks := make([]rune, 0)
+//		es := make([]rune, 0)
+//		p := 0
+//		for i, v := range ra {
+//			if v == '[' {
+//				p = i
+//				break
+//			}
+//			ks = append(ks, v)
+//		}
+//		k, err := strconv.Atoi(string(ks))
+//		if err != nil {
+//			log.Fatal(err)
+//		}
+//		es = ra[p : len(ra)-1]
+//		decoded := make([]rune, 0)
+//		for i := 0; i < k; i++ {
+//			decoded = append(decoded, es...)
+//		}
+//	} else {
+//
+//		var pend int
+//		var pbegin int
+//		for i, v := range ra {
+//			if v == ']' {
+//				pend = i
+//				//find the beginning of the k[encode](pbegin)
+//				for j := i - 1; j >= 0; j-- {
+//					if isNumber(ra[j]) {
+//						for k := j - 1; k >= 0; k-- {
+//							if !isNumber(ra[k]) {
+//								pbegin = k + 1
+//								break
+//							}
+//							pbegin = 0
+//						}
+//					}
+//				}
+//				pend = i + 1
+//				raTemp := ra[pbegin:pend]
+//				decodedString := decodeString(string(raTemp))
+//				//cut + replace
+//				ra = append(ra[:pbegin], ra[pend-1:]...)
+//				ra = append(ra[:pbegin], append([]rune(decodedString), ra[pbegin:]...)...)
+//				//break
+//				i = 0
+//			}
+//		}
+//	}
+//
+//	//remove and replace
+//	return string(ra)
+//}
 
 //// Stack type for first in last out
 //type Stack []rune
