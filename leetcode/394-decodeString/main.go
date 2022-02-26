@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	s := "3[a]2[bc]"
-	//s := "3[aabb]"
-	fmt.Println(decodeString(s))
+	//s := "3[a]2[bc]"
+	s := "2[abb]"
+	fmt.Println("Final: " + decodeString(s))
 }
 
 //topics: string, stack, recursion
@@ -72,11 +72,12 @@ func decodeString(s string) string {
 		k := 0
 		krs := make([]rune, 0)
 		encoded := make([]rune, 0)
+		pbegin := 0
+		pend := 0
 		for i, v := range rs {
 			if v == '[' {
-				pbegin := 0
 				for j := i - 1; j >= 0; j-- {
-					if isLetter(v) {
+					if isLetter(rs[j]) {
 						pbegin = j + 1
 						break
 					}
@@ -88,12 +89,22 @@ func decodeString(s string) string {
 				}
 				k = kt
 				encoded = rs[i+1 : len(rs)-1]
+				//break
+			}
+			if v == ']' {
+				pend = i
 				break
 			}
 		}
 		fmt.Printf("k: %d \t encoded: %v\n", k, encoded)
 		//return string(decode(k, encoded))
-		rs = decode(k, encoded)
+		if pbegin != 0 {
+			newpend := pend - len(rs[pbegin:pend])
+			rs = append(rs[:pbegin], rs[pend+1:]...)
+			rs = append(rs[:pbegin], append(decode(k, encoded), rs[newpend:]...)...)
+		} else {
+			rs = decode(k, encoded)
+		}
 
 	default:
 		fmt.Println("no brackets")
