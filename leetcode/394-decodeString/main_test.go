@@ -67,3 +67,24 @@ func Test_decode(t *testing.T) {
 		})
 	}
 }
+
+func Test_isLetter(t *testing.T) {
+	type args struct {
+		r rune
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{name: "edge a", args: args{r: 'a'}, want: true},
+		{name: "false num", args: args{r: '2'}, want: false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isLetter(tt.args.r); got != tt.want {
+				t.Errorf("isLetter() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
