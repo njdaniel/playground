@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	//s := "3[a]2[bc]"
-	s := "3[aacb]"
+	s := "3[a]2[bc]"
+	//s := "3[aabb]"
 	fmt.Println(decodeString(s))
 }
 
@@ -37,6 +37,36 @@ func decodeString(s string) string {
 	switch {
 	case numbrackets > 1:
 		fmt.Println("multiple brackets")
+		//find the ] bracket and cut and replace the simplified encode string
+		simp := make([]rune, 0)
+		pbegin := 0
+		pend := 0
+		for i, v := range rs {
+			if v == ']' {
+				reachedBegin := true
+				pend = i
+				for j := i - 1; j >= 0; j-- {
+					if rs[j] == ']' {
+						simp = rs[j+1 : i+1]
+						reachedBegin = false
+						pbegin = j + 1
+						break
+					}
+				}
+				if reachedBegin {
+					simp = rs[:i+1]
+				}
+				break
+			}
+		}
+		//recursive get decodestring and cut and paste replacing the section
+		fmt.Println("Simple: " + string(simp))
+		simp = []rune(decodeString(string(simp)))
+		newpend := pend - len(rs[pbegin:pend])
+		rs = append(rs[:pbegin], rs[pend+1:]...)
+		rs = append(rs[:pbegin], append(simp, rs[newpend:]...)...)
+		//recursive
+		rs = []rune(decodeString(string(rs)))
 	case numbrackets == 1:
 		fmt.Println("one bracket pair")
 		k := 0
@@ -44,18 +74,26 @@ func decodeString(s string) string {
 		encoded := make([]rune, 0)
 		for i, v := range rs {
 			if v == '[' {
-				krs = rs[:i]
+				pbegin := 0
+				for j := i - 1; j >= 0; j-- {
+					if isLetter(v) {
+						pbegin = j + 1
+						break
+					}
+				}
+				krs = rs[pbegin:i]
 				kt, err := strconv.Atoi(string(krs))
 				if err != nil {
 					log.Fatal(err)
 				}
 				k = kt
 				encoded = rs[i+1 : len(rs)-1]
+				break
 			}
-			break
 		}
-		fmt.Printf("k: %d \t encoded: %v", k, encoded)
-		return string(decode(k, encoded))
+		fmt.Printf("k: %d \t encoded: %v\n", k, encoded)
+		//return string(decode(k, encoded))
+		rs = decode(k, encoded)
 
 	default:
 		fmt.Println("no brackets")
@@ -179,11 +217,9 @@ func decode(k int, encoded []rune) []rune {
 //	}
 //}
 
-func isLetter(s string) bool {
-	for _, r := range s {
-		if r < 'a' || r > 'z' {
-			return false
-		}
+func isLetter(r rune) bool {
+	if r < 'a' || r > 'z' {
+		return false
 	}
 	return true
 }
