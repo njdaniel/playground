@@ -8,7 +8,8 @@ import (
 
 func main() {
 	//s := "3[a]2[bc]"
-	s := "2[abb]"
+	//s := "2[abb]"
+	s := "2[abc]3[cd]ef"
 	fmt.Println("Final: " + decodeString(s))
 }
 
@@ -65,6 +66,7 @@ func decodeString(s string) string {
 		newpend := pend - len(rs[pbegin:pend])
 		rs = append(rs[:pbegin], rs[pend+1:]...)
 		rs = append(rs[:pbegin], append(simp, rs[newpend:]...)...)
+		fmt.Println("replaced: " + string(rs))
 		//recursive
 		rs = []rune(decodeString(string(rs)))
 	case numbrackets == 1:
@@ -74,6 +76,7 @@ func decodeString(s string) string {
 		encoded := make([]rune, 0)
 		pbegin := 0
 		pend := 0
+		pEncodeBegin := 0
 		for i, v := range rs {
 			if v == '[' {
 				for j := i - 1; j >= 0; j-- {
@@ -88,28 +91,38 @@ func decodeString(s string) string {
 					log.Fatal(err)
 				}
 				k = kt
-				encoded = rs[i+1 : len(rs)-1]
+				//encoded = rs[i+1 : len(rs)-1]
+				pEncodeBegin = i + 1
 				//break
 			}
 			if v == ']' {
 				pend = i
+
+				encoded = rs[pEncodeBegin:pend]
 				break
 			}
 		}
 		fmt.Printf("k: %d \t encoded: %v\n", k, encoded)
 		//return string(decode(k, encoded))
-		if pbegin != 0 {
-			newpend := pend - len(rs[pbegin:pend])
-			rs = append(rs[:pbegin], rs[pend+1:]...)
-			rs = append(rs[:pbegin], append(decode(k, encoded), rs[newpend:]...)...)
-		} else {
-			rs = decode(k, encoded)
-		}
+		simp := string(rs[pbegin : pend+1])
+		fmt.Println("SIMP: " + simp)
+		dsimp := decode(k, encoded)
+		newpend := pend - len(rs[pbegin:pend])
+		rs = append(rs[:pbegin], rs[pend+1:]...)
+		rs = append(rs[:pbegin], append(dsimp, rs[newpend:]...)...)
+		//if pbegin != 0 {
+		//	newpend := pend - len(rs[pbegin:pend])
+		//	rs = append(rs[:pbegin], rs[pend+1:]...)
+		//	rs = append(rs[:pbegin], append(dsimp, rs[newpend:]...)...)
+		//} else {
+		//	rs = decode(k, encoded)
+		//}
 
 	default:
 		fmt.Println("no brackets")
 	}
 
+	fmt.Println("result: " + string(rs))
 	return string(rs)
 }
 
