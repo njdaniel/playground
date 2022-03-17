@@ -1,6 +1,9 @@
 package main
 
-import "regexp"
+import (
+	"regexp"
+	"strings"
+)
 
 func main() {
 
@@ -15,13 +18,14 @@ func isPalindrome(s string) bool {
 	//ss = strings.Split(s, " ")
 
 	//assuming all lowercase and alphanumeric
-	processed := s
-	rs := []rune(s)
+	alphanumericString, _ := removeNonAlphaNumeric(s)
+	lowercase := strings.ToLower(alphanumericString)
+	rs := []rune(lowercase)
 	for i, j := 0, len(rs)-1; i < j; i, j = i+1, j-1 {
 		rs[i], rs[j] = rs[j], rs[i]
 	}
 	reverse := string(rs)
-	if reverse == processed {
+	if reverse == lowercase {
 		return true
 	}
 	return false
