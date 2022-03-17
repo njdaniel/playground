@@ -9,6 +9,7 @@ func main() {
 
 }
 
+//BigO: time:O(n) space:O(n)
 func isPalindrome(s string) bool {
 	//convert to all lowercase
 	//remove non-alphanumeric characters eg spaces, dashes
@@ -30,6 +31,19 @@ func isPalindrome(s string) bool {
 	}
 	return false
 
+}
+
+func isPalindromeOptimized(s string) bool {
+
+	alphanumericString, _ := removeNonAlphaNumeric(s)
+	lowercase := strings.ToLower(alphanumericString)
+	rs := []rune(lowercase)
+	for i, j := 0, len(rs)-1; i < j; i, j = i+1, j-1 {
+		if rs[i] != rs[j] {
+			return false
+		}
+	}
+	return true
 }
 
 //removeNonAlphaNumeric takes a string and removes all non-alphanumeric characters then returns new string
