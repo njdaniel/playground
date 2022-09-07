@@ -14,26 +14,15 @@ import (
 // []rune anyways.
 // still might be nice to use interface to abstract the types for determining if its a palindrome
 
-type Palindrome interface {
-	IsPalindrome() bool
+func IsPalindrome(x interface{}) bool {
+	//find type
+	switch x.Kind() {
+	case reflect.Int:
+		isIntPalindrome(int(x))
+	}
 }
 
-
-
-func IsPalindromeOriginal(x int) bool {
-	s := strconv.Itoa(x)
-	runes := []rune(s)
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-		runes[i], runes[j] = runes[j], runes[i]
-	}
-	reverse := string(runes)
-	if s == reverse {
-		return true
-	}
-	return false
-}
-
-func IsPalindrome(runes []rune) bool {
+func isRuneSlicePalindrome(runes []rune) bool {
 	reverse := make([]rune, len(runes))
 	copy(reverse, runes)
 	for i, j := 0, len(reverse)-1; i < j; i, j = i+1, j-1 {
@@ -46,4 +35,24 @@ func IsPalindrome(runes []rune) bool {
 		return true
 	}
 	return false
+}
+
+func isStringPalindrome(s string) bool {
+	rs := []rune(s)
+	for i, j := 0, len(rs)-1; i < j; i, j = i+1, j-1 {
+		if rs[i] != rs[j] {
+			return false
+		}
+	}
+	return true
+}
+func isIntPalindrome(x int) bool {
+	s := strconv.Itoa(x)
+	rs := []rune(s)
+	for i, j := 0, len(rs)-1; i < j; i, j = i+1, j-1 {
+		if rs[i] != rs[j] {
+			return false
+		}
+	}
+	return true
 }
