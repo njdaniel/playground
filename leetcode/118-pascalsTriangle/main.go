@@ -21,6 +21,7 @@ func generate(numRows int) [][]int {
 			newRow = append(newRow, genNum)
 		}
 		newRow = append(newRow, 1)
+		rows = append(rows, newRow)
 	}
 
 	return rows
