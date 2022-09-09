@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(generate(5))
 }
 
 // generate creates a pascal triangle given the number of rows
@@ -17,7 +19,7 @@ func generate(numRows int) [][]int {
 		newRow := make([]int, 0)
 		newRow = append(newRow, 1)
 		for j := 1; j < len(rows[i-1]); j++ {
-			genNum := rows[i][j-1] + rows[i][j]
+			genNum := rows[i-1][j-1] + rows[i-1][j]
 			newRow = append(newRow, genNum)
 		}
 		newRow = append(newRow, 1)
