@@ -7,7 +7,7 @@ import (
 
 func main() {
 	d := []int{1, 2, 2}
-	fmt.Println(d)
+	fmt.Println(plusOne(d))
 }
 
 func plusOne(digits []int) []int {
