@@ -16,6 +16,7 @@ func Test_addTwoNumbers(t *testing.T) {
 		want *ListNode
 	}{
 		// TODO: Add test cases.
+		{name: "example1", args: args{l1: },
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
